@@ -1,0 +1,27 @@
+2025-05-02 16:38:19,298 - __main__ - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: OPERATOR -> *
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-02 16:38:19,299 - __main__ - DEBUG - Tokenized: OPERATOR -> >
+2025-05-02 16:50:02,233 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-02 16:50:02,234 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-02 16:50:02,234 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-02 16:50:02,234 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-02 16:50:02,235 - compiler.tokenizer - DEBUG - Tokenization complete.
+2025-05-02 16:50:39,356 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-02 16:50:39,356 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-02 16:50:39,356 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-02 16:50:39,357 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-02 16:50:39,358 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-02 16:50:39,358 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-02 16:50:39,358 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-02 16:50:39,358 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-05-02 16:50:39,358 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-02 16:50:39,359 - compiler.tokenizer - DEBUG - Tokenization complete.

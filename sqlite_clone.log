@@ -588,3 +588,185 @@
 2025-05-03 12:42:11,407 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
 2025-05-03 12:42:11,407 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
 2025-05-03 12:42:11,407 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-05-03 12:56:57,077 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,077 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 12:56:57,185 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,185 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 12:56:57,300 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,300 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 12:56:57,417 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,417 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 12:56:57,534 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,534 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-05-03 12:56:57,649 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,649 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-05-03 12:56:57,768 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 12:56:57,768 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 12:56:57,881 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 12:56:57,881 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-03 12:56:57,881 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,881 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-05-03 12:56:57,881 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-05-03 12:56:57,983 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 12:56:57,983 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 12:56:57,983 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-05-03 12:56:57,983 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-05-03 15:26:25,387 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:25,387 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-05-03 15:26:25,611 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 15:26:25,612 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 15:26:25,612 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 15:26:25,612 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-05-03 15:26:25,612 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 15:26:25,612 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:25,612 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:25,726 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-05-03 15:26:25,726 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 15:26:25,727 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:25,727 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-03 15:26:25,844 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:25,844 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:25,975 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-03 15:26:25,976 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:25,976 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:26,114 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 15:26:26,114 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-05-03 15:26:26,115 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:26,115 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-05-03 15:26:26,237 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-03 15:26:26,238 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-03 15:26:26,389 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 15:26:26,389 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-03 15:26:26,389 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:26,389 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-05-03 15:26:26,389 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-05-03 15:26:26,573 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-03 15:26:26,574 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-03 15:26:26,574 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-05-03 15:26:26,574 - compiler.tokenizer - INFO - Tokenization complete.

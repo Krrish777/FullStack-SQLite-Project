@@ -29,7 +29,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     sql = args.sql
-    print_colored(f"Input SQL: {sql}", color=CYAN)
     
     try:
         tokens = tokenizer.tokenize(sql)

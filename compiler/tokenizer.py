@@ -1,7 +1,7 @@
 import re
 from utils.errors import TokenizationError
 from utils.logger import get_logger
-from compiler.token_definitions import TOKEN_PATTERN  # Move TOKEN_PATTERN into its own module if needed
+from compiler.token_definitions import TOKEN_PATTERN
 
 logger = get_logger(__name__)
 
@@ -27,6 +27,7 @@ class Tokenizer:
             match_found = False
             for token_type, pattern in self.patterns:
                 match = pattern.match(sql, position)
+                
                 if match:
                     value = match.group(0)
                     token_value = value.upper() if token_type == "KEYWORD" else value
@@ -40,5 +41,5 @@ class Tokenizer:
                 raise TokenizationError(f"Unexpected character: {sql[position]} at position {position}")
 
         tokens.append(("EOF", None))
-        logger.debug("Tokenization complete.")
+        logger.info("Tokenization complete.")
         return tokens

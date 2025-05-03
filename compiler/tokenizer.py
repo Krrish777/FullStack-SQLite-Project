@@ -10,6 +10,7 @@ class Tokenizer:
         self.patterns = [(typ, re.compile(pat, re.IGNORECASE)) for typ, pat in TOKEN_PATTERN]
 
     def tokenize(self, sql):
+        logger.info("Starting tokenization process.")
         tokens = []
         position = 0
         sql = sql.strip()

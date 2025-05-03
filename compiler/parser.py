@@ -81,5 +81,35 @@ class Parser:
             else:
                 break
         
+        if not select_list:
+            logger.error("No columns found in SELECT list")
+            raise SyntaxError("No columns found in SELECT list")
+        
         logger.info(f"Finished parsing SELECT list: {select_list}")
         return select_list
+    
+    def parse_where_clause(self):
+        column_token = self.current_token()
+        
+        if not column_token or column_token[0] != "IDENTIFIER":
+            raise SyntaxError("Expected column name in WHERE clause")
+        column_token = column_token[1]
+        self.advance()
+        
+        operator_token = self.current_token()
+        if not operator_token or operator_token[0] != "OPERATOR":
+            raise SyntaxError("Expected operator in WHERE clause")
+        operator = operator_token[1]
+        self.advance()
+        
+        value_token = self.current_token()
+        if not value_token or value_token[0] not in ("STRING", "NUMBER"):
+            raise SyntaxError("Expected STRING or NUMBER in WHERE clause")
+        value = value_token[1]
+        self.advance()
+        
+        return {
+            "column": column_token,
+            "operator": operator,
+            "value": value
+        }

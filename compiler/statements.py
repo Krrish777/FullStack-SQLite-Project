@@ -1,197 +1,237 @@
 from utils.logger import get_logger
+
 logger = get_logger(__name__)
 
-
 def parse_statement(parser):
-    logger.info("Starting parsing statement")
-    token = parser.current_token()
-    if token is None:
-        logger.error("Unexpected end of input")
-        raise SyntaxError("Unexpected end of input")
-    
-    token_type, token_value = token
-    logger.debug(f"Current token: {token}, value: {token_value}")
-    
-    if token_type == "KEYWORD" and token_value == "SELECT":
-        logger.debug("Parsing SELECT statement")
+    """
+    Dispatches to the appropriate parser function based on the first keyword
+    of the SQL input. Supports SELECT, INSERT, DELETE, CREATE, and UPDATE statements.
+
+    Args:
+        parser: The parser object responsible for managing tokens.
+
+    Returns:
+        A dictionary representing the parsed SQL statement.
+
+    Raises:
+        SyntaxError: If the input is empty or the keyword is unknown.
+    """
+    tok = parser.current_token()
+    if not tok:
+        raise SyntaxError("Empty input")
+    _, kw = tok
+    logger.info(f"Dispatching {kw}")
+    if kw == "SELECT":
         return parse_select_statement(parser)
-    
-    elif token_type == "KEYWORD" and token_value == "INSERT":
-        logger.debug("Parsing INSERT statement")
+    if kw == "INSERT":
         return parse_insert_statement(parser)
-    
-    elif token_type == "KEYWORD" and token_value == "CREATE":
-        logger.debug("Parsing CREATE statement")
-        return parse_create_statement(parser)
-    
-    elif token_type == "KEYWORD" and token_value == "DELETE":
-        logger.debug("Parsing DELETE statement")
+    if kw == "DELETE":
         return parse_delete_statement(parser)
-    
-    elif token_type == "KEYWORD" and token_value == "UPDATE":
-        logger.debug("Parsing UPDATE statement")
+    if kw == "CREATE":
+        return parse_create_statement(parser)
+    if kw == "UPDATE":
         return parse_update_statement(parser)
-    
-    else:
-        logger.error(f"Unexpected token: {token_value} at position {parser.pos}")
-        raise SyntaxError(f"Unexpected token: {token_value} at position {parser.pos}")
-    
+    raise SyntaxError(f"Unknown statement: {kw}")
+
 def parse_select_statement(parser):
-    logger.debug("Parsing SELECT statement")
+    """
+    Parses a SELECT statement including optional WHERE clause.
+
+    Args:
+        parser: The parser object.
+
+    Returns:
+        A dictionary containing SELECT statement structure.
+
+    Raises:
+        SyntaxError: If syntax rules are violated.
+    """
+    
+    logger.info("Parsing SELECT statement")
     parser.expect("KEYWORD", "SELECT")
-    select_list = parser.parse_select_list()
+    
+    cols = parser.parse_select_list()
     parser.expect("KEYWORD", "FROM")
     
-    table_name = parser.current_token()
-    if table_name and table_name[0] == "IDENTIFIER":
-        table_name = table_name[1]
-        parser.advance()
-    else:
+    tok = parser.current_token()
+    
+    if not tok or tok[0] != "IDENTIFIER":
         logger.error("Expected table name after FROM")
         raise SyntaxError("Expected table name after FROM")
     
-    where_clause = None
-    if parser.match("KEYWORD", "WHERE"):
-        where_clause = parser.parse_where_clause()
-    
+    table = tok[1]; parser.advance()
+    where = None
+    if parser.match("KEYWORD","WHERE"):
+        where = parser.parse_where_clause()
+        
     parser.expect("SEMICOLON")
-    logger.debug(f"Parsed SELECT statement: {select_list}, table: {table_name}, where: {where_clause}")
-    return {
-        "type": "SELECT",
-        "columns": select_list,
-        "table": table_name,
-        "where": where_clause
-    }
+    logger.info(f"Parsed SELECT on table {table} with columns {cols} and where {where}")
+    return {"type":"SELECT","columns":cols,"table":table,"where":where}
 
 def parse_insert_statement(parser):
-    logger.debug("Parsing INSERT statement")
-    parser.expect("KEYWORD", "INSERT")
-    parser.expect("KEYWORD", "INTO")
-    
-    table_name = parser.current_token()
-    if table_name and table_name[0] == "IDENTIFIER":
-        table_name = table_name[1]
-        parser.advance()
+    """
+    Parses an INSERT INTO statement with optional column list.
+
+    Args:
+        parser: The parser object.
+
+    Returns:
+        A dictionary containing INSERT statement structure.
+
+    Raises:
+        SyntaxError: If syntax rules are violated.
+    """
+    logger.info("Parsing INSERT statement")
+    parser.expect("KEYWORD","INSERT")
+    parser.expect("KEYWORD","INTO")
+    tok = parser.current_token()
+    if tok and tok[0]=="IDENTIFIER":
+        table = tok[1]; parser.advance()
     else:
         logger.error("Expected table name after INTO")
         raise SyntaxError("Expected table name after INTO")
-    
-    parser.expect("KEYWORD", "VALUES")
-    parser.expect("LPAREN")
-    
-    values = []
-    while True:
-        token = parser.current_token()
-        if token is None :
-            logger.error("Unexpected end of input while parsing INSERT statement")
-            raise SyntaxError("Unexpected end of input")
-        
-        token_type, token_value = token
-        
-        if token_type in ("STRING", "NUMBER"):
-            values.append(token_value)
-            parser.advance()
-        else:
-            logger.error(f"Expected STRING or NUMBER but got {token_type} at position {parser.pos}")
-            raise SyntaxError(f"Expected STRING or NUMBER but got {token_type} at position {parser.pos}")
-        
-        if parser.match("COMMA"):
-            continue
-        else:
+    cols = None
+    if parser.match("LPAREN"):
+        cols=[]
+        while True:
+            tok=parser.current_token()
+            if not tok or tok[0]!="IDENTIFIER":
+                logger.error("Expected column name in INSERT")
+                raise SyntaxError("Expected column name in INSERT")
+            cols.append(tok[1]); parser.advance()
+            if parser.match("COMMA"): continue
             break
+        parser.expect("RPAREN")
+        
+    parser.expect("KEYWORD","VALUES")
+    parser.expect("LPAREN")
+    vals=[]
+    while True:
+        tok=parser.current_token()
+        if not tok or tok[0] not in ("STRING","NUMBER"):
+            logger.error("Expected value in INSERT")
+            raise SyntaxError("Expected value in INSERT")
+        vals.append(tok[1]); parser.advance()
+        if parser.match("COMMA"): continue
+        break
     parser.expect("RPAREN")
     parser.expect("SEMICOLON")
-    logger.debug(f"Parsed INSERT statement: table: {table_name}, values: {values}")
-    return {
-        "type": "INSERT",
-        "table": table_name,
-        "values": values
-    }
+    logger.info(f"Parsed INSERT into {table} with columns {cols} and values {vals}")
+    return {"type":"INSERT","table":table,"columns":cols,"values":vals}
 
 def parse_delete_statement(parser):
-    logger.debug("Parsing DELETE statement")
-    parser.expect("KEYWORD", "DELETE")
-    parser.expect("KEYWORD", "FROM")
-    
-    table_name = parser.current_token()
-    if table_name and table_name[0] == "IDENTIFIER":
-        table_name = table_name[1]
-        parser.advance()
-    else:
-        logger.error("Expected table name after FROM")
-        raise SyntaxError("Expected table name after FROM")
-    
-    where_clause = None
-    if parser.match("KEYWORD", "WHERE"):
-        where_clause = parser.parse_where_clause()
-        
+    """
+    Parses a DELETE FROM statement with optional WHERE clause.
+
+    Args:
+        parser: The parser object.
+
+    Returns:
+        A dictionary containing DELETE statement structure.
+
+    Raises:
+        SyntaxError: If syntax rules are violated.
+    """
+    logger.info("Parsing DELETE statement")
+    parser.expect("KEYWORD","DELETE")
+    parser.expect("KEYWORD","FROM")
+    tok=parser.current_token()
+    if not tok or tok[0]!="IDENTIFIER":
+        logger.error("Expected table name in DELETE")
+        raise SyntaxError("Expected table name in DELETE")
+    table=tok[1]; parser.advance()
+    where=None
+    if parser.match("KEYWORD","WHERE"):
+        where=parser.parse_where_clause()
     parser.expect("SEMICOLON")
-    logger.debug(f"Parsed DELETE statement: table: {table_name}, where: {where_clause}")    
-    return {
-        "type": "DELETE",
-        "table": table_name,
-        "where": where_clause
-    }
+    logger.info(f"Parsed DELETE from {table} with where {where}")
+    return {"type":"DELETE","table":table,"where":where}
 
 def parse_create_statement(parser):
-    logger.debug("Parsing CREATE statement")
-    parser.expect("KEYWORD", "CREATE")
-    parser.expect("KEYWORD", "TABLE")
-    
-    table_name_token = parser.current_token()
-    if table_name_token and table_name_token[0] == "IDENTIFIER":
-        table_name = table_name_token[1]
-        parser.advance()
-    else:
-        logger.error("Expected table name after CREATE TABLE")
-        raise SyntaxError("Expected table name after CREATE TABLE")
-        
-    columns = []
-    parser.expect("LPAREN")
-    
-    valid_types = {"INT", "VARCHAR", "TEXT", "DATE", "FLOAT", "DOUBLE"}
-    
-    while True:
-        token = parser.current_token()
-        if token is None:
-            logger.error("Unexpected end of input while parsing CREATE statement")
-            raise SyntaxError("Unexpected end of input")
-        
-        token_type, token_value = token
-        
-        if token_type == "IDENTIFIER":
-            column_name = token_value
-            parser.advance()
-        else:
-            logger.error(f"Expected column name but got {token_type} at position {parser.pos}")
-            raise SyntaxError(f"Expected column name but got {token_type} at position {parser.pos}")
-        
-        token = parser.current_token()
-        if token and token[0] == "IDENTIFIER":
-            column_type = token[1].upper()
-        else:
-            logger.error(f"Expected column type after column name but got {token_type} at position {parser.pos}")
-            raise SyntaxError(f"Expected column type after column name but got {token_type} at position {parser.pos}")
+    """
+    Parses a CREATE TABLE statement including column definitions.
 
-        if column_type not in valid_types:
-            logger.error(f"Invalid column type: {column_type} at position {parser.pos}")
-            raise SyntaxError(f"Invalid column type: {column_type} at position {parser.pos}")
-        
-        parser.advance()  # only one advance is needed
-        
-        columns.append((column_name, column_type))
-        
-        if parser.match("COMMA"):
-            continue
-        else:
+    Args:
+        parser: The parser object.
+
+    Returns:
+        A dictionary containing CREATE TABLE statement structure.
+
+    Raises:
+        SyntaxError: If syntax rules are violated or type is unknown.
+    """
+    logger.info("Parsing CREATE statement")
+    parser.expect("KEYWORD","CREATE")
+    parser.expect("KEYWORD","TABLE")
+    tok=parser.current_token()
+    if not tok or tok[0]!="IDENTIFIER":
+        logger.error("Expected table name in CREATE")
+        raise SyntaxError("Expected table name in CREATE")
+    table=tok[1]; parser.advance()
+    parser.expect("LPAREN")
+    cols=[]
+    valid={"INT","VARCHAR","TEXT","DATE","FLOAT","DOUBLE"}
+    while True:
+        tok=parser.current_token()
+        if not tok or tok[0]!="IDENTIFIER":
             break
-        logger.debug(f"Added column: {column_name} of type: {column_type}")
-        
+        name=tok[1]; parser.advance()
+        tok=parser.current_token()
+        if not tok or tok[0]!="IDENTIFIER":
+            logger.error("Expected type in CREATE")
+            raise SyntaxError("Expected type in CREATE")
+        typ=tok[1].upper()
+        if typ not in valid:
+            logger.error(f"Unknown type {typ} in CREATE")
+            raise SyntaxError(f"Unknown type {typ}")
+        parser.advance()
+        cols.append((name,typ))
+        if not parser.match("COMMA"):
+            break
     parser.expect("RPAREN")
     parser.expect("SEMICOLON")
-    
-    return {
-        "type": "CREATE",
-        "table": table_name,
-        "columns": columns
-    }
+    logger.info(f"Parsed CREATE TABLE {table} with columns {cols}")
+    return {"type":"CREATE","table":table,"columns":cols}
+
+def parse_update_statement(parser):
+    """
+    Parses an UPDATE statement with SET clauses and optional WHERE clause.
+
+    Args:
+        parser: The parser object.
+
+    Returns:
+        A dictionary containing UPDATE statement structure.
+
+    Raises:
+        SyntaxError: If syntax rules are violated.
+    """
+    logger.info("Parsing UPDATE statement")
+    parser.expect("KEYWORD","UPDATE")
+    tok=parser.current_token()
+    if not tok or tok[0]!="IDENTIFIER":
+        logger.error("Expected table name in UPDATE")
+        raise SyntaxError("Expected table name in UPDATE")
+    table=tok[1]; parser.advance()
+    parser.expect("KEYWORD","SET")
+    sets=[]
+    while True:
+        tok=parser.current_token()
+        if not tok or tok[0]!="IDENTIFIER":
+            break
+        col=tok[1]; parser.advance()
+        parser.expect("OPERATOR","=")
+        tok=parser.current_token()
+        if not tok or tok[0] not in ("STRING","NUMBER"):
+            logger.error("Expected value in UPDATE")
+            raise SyntaxError("Expected value in UPDATE")
+        val=tok[1]; parser.advance()
+        sets.append((col,val))
+        if not parser.match("COMMA"):
+            break
+    where=None
+    if parser.match("KEYWORD","WHERE"):
+        where=parser.parse_where_clause()
+    parser.expect("SEMICOLON")
+    logger.info(f"Parsed UPDATE {table} set {sets} with where {where}")
+    return {"type":"UPDATE","table":table,"set":sets,"where":where}

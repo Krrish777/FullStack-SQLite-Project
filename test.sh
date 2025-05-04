@@ -19,7 +19,19 @@ declare -a TEST_CASES=(
 # Run each test case
 for sql in "${TEST_CASES[@]}"; do
   echo -e "\033[1;34mRunning test:\033[0m \"$sql\""
-  python "$SCRIPT" "$sql"
+  
+  # Run the Python script with the SQL query using python3
+  output=$(python3 "$SCRIPT" "$sql" 2>&1)  # Using python3 instead of python
+  
+  # Check if the test passed or failed based on the output
+  if [[ $? -eq 0 ]]; then
+    echo -e "\033[1;32mTest passed:\033[0m $sql"
+    echo "$output"
+  else
+    echo -e "\033[1;31mTest failed:\033[0m $sql"
+    echo "$output"
+  fi
+  
   echo -e "\033[1;35m----------------------------------------\033[0m"
 done
 

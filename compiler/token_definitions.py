@@ -7,6 +7,5 @@ TOKEN_PATTERN = [
     ("SEMICOLON", r";"),
     ("LPAREN", r"\("),
     ("RPAREN", r"\)"),
-    ("OPERATOR", r"[+\-*/=<>]"),
-    ("ASTERISK", r"\*")
+    ("OPERATOR", r"[+\-*/=<>]")
 ]

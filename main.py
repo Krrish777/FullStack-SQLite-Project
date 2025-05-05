@@ -27,16 +27,8 @@ def print_colored(text, color=RESET, bold=False):
         print(f"{color}{text}{RESET}")
 
 def print_tree(parse_tree, indent=0, is_last=True):
-    """
-    Recursively prints a parse tree in a readable tree format with branch symbols.
-
-    Args:
-        parse_tree (dict): The parse tree to print.
-        indent (int): Current indentation level.
-        is_last (bool): Whether this is the last item in the tree branch.
-    """
     space = "    " * indent
-    branch_symbol = "└── " if is_last else "├── "
+    branch_symbol = "`-- " if is_last else "|-- "
     
     if isinstance(parse_tree, dict):
         for i, (key, value) in enumerate(parse_tree.items()):
@@ -49,6 +41,7 @@ def print_tree(parse_tree, indent=0, is_last=True):
             print_tree(item, indent, is_last_item)
     else:
         print(f"{space}{branch_symbol}{parse_tree}")
+
 
 def format_tree(parse_tree, indent=""):
     """Recursively formats a parse tree into a string representation."""

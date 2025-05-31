@@ -17,7 +17,7 @@ YELLOW = "\033[33m"
 CYAN = "\033[36m"
 MAGENTA = "\033[35m"
 
-def print_colored(text, color=RESET, bold=False):
+def print_colored(text:str, color=RESET, bold=False):
     """
     Prints the given text in color and optionally bold in the terminal.
     """

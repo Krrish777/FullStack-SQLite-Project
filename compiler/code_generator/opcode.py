@@ -6,7 +6,7 @@ class Opcode(Enum):
     to a specific action that the engine can take, such as manipulating data, 
     controlling flow, or performing comparisons.
     """
-    # Table & Schema Operations
+    # Table & Schema Operations      
     CREATE_TABLE = auto()
     DROP_TABLE = auto()
     OPEN_TABLE = auto()
@@ -30,8 +30,11 @@ class Opcode(Enum):
     
     # Comparison / Conditionals
     COMPARE_EQ = auto()
+    COMPARE_NEQ = auto()
     COMPARE_LT = auto()
+    COMPARE_LTE = auto()
     COMPARE_GT = auto()
+    COMPARE_GTE = auto()
     
     # Output
     EMIT_ROW = auto()

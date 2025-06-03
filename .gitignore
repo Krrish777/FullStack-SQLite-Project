@@ -11,3 +11,5 @@ venv/
 
 # VS Code settings
 .vscode/
+
+sqlite_clone.log

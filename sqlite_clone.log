@@ -10479,3 +10479,2113 @@
 2025-05-17 13:38:56,017 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
 2025-05-17 13:38:56,017 - compiler.parser - ERROR - No columns found in SELECT list
 2025-05-17 13:38:56,017 - __main__ - ERROR - Syntax error: No columns found in SELECT list
+2025-05-31 13:29:01,368 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-05-31 13:29:01,369 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:01,369 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:01,369 - compiler.statements - INFO - Dispatching SELECT
+2025-05-31 13:29:01,369 - compiler.statements - INFO - Parsing SELECT statement
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-05-31 13:29:01,369 - compiler.parser - INFO - Parsing SELECT list
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '*')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:01,369 - compiler.parser - INFO - SELECT list: ['*']
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-05-31 13:29:01,369 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '30')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - WHERE clause: age > 30
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,376 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:01,376 - compiler.statements - INFO - Parsed SELECT on table users with columns ['*'] and where {'column': 'age', 'operator': '>', 'value': '30'}
+2025-05-31 13:29:01,816 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:01,818 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-05-31 13:29:01,818 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-05-31 13:29:01,818 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-31 13:29:01,819 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:01,821 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:01,821 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-05-31 13:29:01,821 - compiler.statements - INFO - Dispatching INSERT
+2025-05-31 13:29:01,821 - compiler.statements - INFO - Parsing INSERT statement
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INSERT')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INSERT')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INTO')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INTO')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:01,822 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Matched ('LPAREN', '(')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,824 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'VALUES')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'VALUES')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:01,826 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '25')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-05-31 13:29:01,828 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,830 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,830 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:01,831 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:01,831 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:01,831 - compiler.statements - INFO - Parsed INSERT into users with columns ['name', 'age'] and values ["'Alice'", '25']
+2025-05-31 13:29:02,255 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:02,255 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-31 13:29:02,257 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:02,257 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-05-31 13:29:02,259 - compiler.statements - INFO - Dispatching UPDATE
+2025-05-31 13:29:02,259 - compiler.statements - INFO - Parsing UPDATE statement
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'UPDATE')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'UPDATE')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-05-31 13:29:02,259 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-05-31 13:29:02,261 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SET')
+2025-05-31 13:29:02,261 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SET')
+2025-05-31 13:29:02,263 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:02,263 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:02,263 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Expect matched: ('OPERATOR', '=')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-05-31 13:29:02,264 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '26')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,266 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,268 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,268 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-05-31 13:29:02,268 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,268 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,269 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:02,269 - compiler.statements - INFO - Parsed UPDATE users set [('age', '26')] with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-05-31 13:29:02,731 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:02,731 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-05-31 13:29:02,731 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:02,731 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-05-31 13:29:02,731 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-31 13:29:02,733 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-31 13:29:02,733 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-31 13:29:02,733 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-05-31 13:29:02,733 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:02,733 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:02,733 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-05-31 13:29:02,733 - compiler.statements - INFO - Dispatching DELETE
+2025-05-31 13:29:02,733 - compiler.statements - INFO - Parsing DELETE statement
+2025-05-31 13:29:02,735 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-05-31 13:29:02,735 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'DELETE')
+2025-05-31 13:29:02,735 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'DELETE')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-05-31 13:29:02,736 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:02,737 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:02,737 - compiler.statements - INFO - Parsed DELETE from users with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-05-31 13:29:03,018 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-05-31 13:29:03,022 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-31 13:29:03,023 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-05-31 13:29:03,023 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-05-31 13:29:03,023 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-05-31 13:29:03,023 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:03,023 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-05-31 13:29:03,023 - compiler.statements - INFO - Dispatching CREATE
+2025-05-31 13:29:03,023 - compiler.statements - INFO - Parsing CREATE statement
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'CREATE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'CREATE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'TABLE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'TABLE')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'books')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'INT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'title')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'TEXT')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,023 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:03,023 - compiler.statements - INFO - Parsed CREATE TABLE books with columns [('id', 'INT'), ('title', 'TEXT')]
+2025-05-31 13:29:03,256 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-31 13:29:03,256 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-05-31 13:29:03,258 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:03,258 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,258 - compiler.statements - INFO - Dispatching SELECT
+2025-05-31 13:29:03,258 - compiler.statements - INFO - Parsing SELECT statement
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,258 - compiler.parser - INFO - Parsing SELECT list
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,258 - compiler.parser - INFO - SELECT list: ['name']
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'employees')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'salary')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-05-31 13:29:03,258 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '50000')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - WHERE clause: salary >= 50000
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,263 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:03,263 - compiler.statements - INFO - Parsed SELECT on table employees with columns ['name'] and where {'column': 'salary', 'operator': '>=', 'value': '50000'}
+2025-05-31 13:29:03,566 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:03,566 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-31 13:29:03,566 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-05-31 13:29:03,566 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-05-31 13:29:03,567 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-05-31 13:29:03,569 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-05-31 13:29:03,569 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:03,571 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,571 - compiler.statements - INFO - Dispatching SELECT
+2025-05-31 13:29:03,571 - compiler.statements - INFO - Parsing SELECT statement
+2025-05-31 13:29:03,571 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,572 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,572 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,573 - compiler.parser - INFO - Parsing SELECT list
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,573 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,575 - compiler.parser - INFO - SELECT list: ['id', 'name']
+2025-05-31 13:29:03,575 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,575 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,575 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:03,575 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-05-31 13:29:03,575 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-05-31 13:29:03,576 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'orders')
+2025-05-31 13:29:03,576 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,576 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,576 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'date')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:03,577 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-05-31 13:29:03,583 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-05-31 13:29:03,583 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'2024-01-01'")
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - WHERE clause: date = '2024-01-01'
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-05-31 13:29:03,584 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-05-31 13:29:03,585 - compiler.statements - INFO - Parsed SELECT on table orders with columns ['id', 'name'] and where {'column': 'date', 'operator': '=', 'value': "'2024-01-01'"}
+2025-05-31 13:29:03,840 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:03,841 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-31 13:29:03,841 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-05-31 13:29:03,841 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:03,841 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-05-31 13:29:03,841 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-05-31 13:29:04,261 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-05-31 13:29:04,261 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-05-31 13:29:04,261 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-05-31 13:29:04,261 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-05-31 13:29:04,261 - compiler.tokenizer - INFO - Tokenization complete.
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:04,263 - compiler.statements - INFO - Dispatching SELECT
+2025-05-31 13:29:04,263 - compiler.statements - INFO - Parsing SELECT statement
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:04,263 - compiler.parser - INFO - Parsing SELECT list
+2025-05-31 13:29:04,263 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-05-31 13:29:04,263 - compiler.parser - ERROR - No columns found in SELECT list
+2025-05-31 13:29:04,263 - __main__ - ERROR - Syntax error: No columns found in SELECT list
+2025-06-02 10:16:03,137 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:03,140 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:03,140 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:16:03,140 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:03,141 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:03,141 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:03,141 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:03,142 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:16:03,142 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-06-02 10:16:03,142 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:03,142 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:03,142 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:03,142 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:03,142 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:03,142 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:03,142 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:03,142 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:03,142 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:16:03,143 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '*')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:03,143 - compiler.parser - INFO - SELECT list: ['*']
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,143 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:16:03,145 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '30')
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - WHERE clause: age > 30
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,146 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:03,147 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,147 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:03,147 - compiler.statements - INFO - Parsed SELECT on table users with columns ['*'] and where {'column': 'age', 'operator': '>', 'value': '30'}
+2025-06-02 10:16:03,430 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:03,430 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-06-02 10:16:03,430 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-06-02 10:16:03,430 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-06-02 10:16:03,432 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:03,433 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:03,433 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:03,433 - compiler.statements - INFO - Dispatching INSERT
+2025-06-02 10:16:03,433 - compiler.statements - INFO - Parsing INSERT statement
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INTO')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,433 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Matched ('LPAREN', '(')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:03,435 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '25')
+2025-06-02 10:16:03,437 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,439 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:03,439 - compiler.statements - INFO - Parsed INSERT into users with columns ['name', 'age'] and values ["'Alice'", '25']
+2025-06-02 10:16:03,742 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:03,742 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-06-02 10:16:03,742 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:03,743 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:03,743 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:03,743 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:03,743 - compiler.statements - INFO - Dispatching UPDATE
+2025-06-02 10:16:03,743 - compiler.statements - INFO - Parsing UPDATE statement
+2025-06-02 10:16:03,743 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:03,743 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SET')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SET')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Expect matched: ('OPERATOR', '=')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '26')
+2025-06-02 10:16:03,745 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:03,747 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:03,748 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:03,748 - compiler.statements - INFO - Parsed UPDATE users set [('age', '26')] with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:16:04,041 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:04,041 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:04,042 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:04,042 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:04,042 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:04,042 - compiler.statements - INFO - Dispatching DELETE
+2025-06-02 10:16:04,042 - compiler.statements - INFO - Parsing DELETE statement
+2025-06-02 10:16:04,042 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:04,042 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:04,042 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:04,042 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,043 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,044 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:04,044 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:04,044 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:04,044 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:04,044 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,045 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:04,045 - compiler.statements - INFO - Parsed DELETE from users with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:16:04,287 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:04,287 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-06-02 10:16:04,290 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-06-02 10:16:04,290 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:04,290 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:04,290 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:04,290 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:04,290 - compiler.statements - INFO - Dispatching CREATE
+2025-06-02 10:16:04,290 - compiler.statements - INFO - Parsing CREATE statement
+2025-06-02 10:16:04,290 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:04,291 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:04,292 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,293 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:04,293 - compiler.statements - INFO - Parsed CREATE TABLE books with columns [('id', 'INT'), ('title', 'TEXT')]
+2025-06-02 10:16:04,551 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-06-02 10:16:04,551 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:04,551 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,553 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:04,553 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,553 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,553 - compiler.parser - INFO - SELECT list: ['name']
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:04,553 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '50000')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - WHERE clause: salary >= 50000
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,555 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:04,555 - compiler.statements - INFO - Parsed SELECT on table employees with columns ['name'] and where {'column': 'salary', 'operator': '>=', 'value': '50000'}
+2025-06-02 10:16:04,803 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:04,803 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:04,803 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-06-02 10:16:04,805 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:04,805 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,805 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:04,805 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,805 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:04,805 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,807 - compiler.parser - INFO - SELECT list: ['id', 'name']
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - WHERE clause: date = '2024-01-01'
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:04,807 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:04,809 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:04,809 - compiler.statements - INFO - Parsed SELECT on table orders with columns ['id', 'name'] and where {'column': 'date', 'operator': '=', 'value': "'2024-01-01'"}
+2025-06-02 10:16:05,070 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:05,070 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:05,070 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:16:05,070 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:05,070 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-06-02 10:16:05,070 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-06-02 10:16:05,363 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:05,363 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:05,363 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:05,363 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-06-02 10:16:05,363 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:05,363 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:05,363 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:05,363 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:05,363 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:05,363 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:05,363 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:05,363 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:05,365 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:05,365 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:05,365 - compiler.parser - ERROR - No columns found in SELECT list
+2025-06-02 10:16:05,365 - __main__ - ERROR - Syntax error: No columns found in SELECT list
+2025-06-02 10:16:11,889 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-06-02 10:16:11,889 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:11,889 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:11,889 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:11,889 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:16:11,889 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '*')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:11,889 - compiler.parser - INFO - SELECT list: ['*']
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:16:11,889 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '30')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - WHERE clause: age > 30
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:11,895 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:11,895 - compiler.statements - INFO - Parsed SELECT on table users with columns ['*'] and where {'column': 'age', 'operator': '>', 'value': '30'}
+2025-06-02 10:16:12,165 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:12,165 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-06-02 10:16:12,165 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-06-02 10:16:12,165 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:12,165 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:12,167 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:12,167 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:12,167 - compiler.statements - INFO - Dispatching INSERT
+2025-06-02 10:16:12,167 - compiler.statements - INFO - Parsing INSERT statement
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INSERT')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INTO')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INTO')
+2025-06-02 10:16:12,167 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Matched ('LPAREN', '(')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'VALUES')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,169 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '25')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,171 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:12,171 - compiler.statements - INFO - Parsed INSERT into users with columns ['name', 'age'] and values ["'Alice'", '25']
+2025-06-02 10:16:12,435 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:12,435 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:12,435 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:12,435 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:12,435 - compiler.statements - INFO - Dispatching UPDATE
+2025-06-02 10:16:12,435 - compiler.statements - INFO - Parsing UPDATE statement
+2025-06-02 10:16:12,437 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:12,437 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:12,437 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:16:12,437 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,437 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SET')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SET')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Expect matched: ('OPERATOR', '=')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '26')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,438 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,440 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:12,440 - compiler.statements - INFO - Parsed UPDATE users set [('age', '26')] with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:16:12,705 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:12,705 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-06-02 10:16:12,705 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:12,705 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:16:12,705 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:12,707 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:12,707 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:12,707 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:16:12,707 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:12,707 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:12,707 - compiler.statements - INFO - Dispatching DELETE
+2025-06-02 10:16:12,707 - compiler.statements - INFO - Parsing DELETE statement
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'DELETE')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,707 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,709 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:12,711 - compiler.statements - INFO - Parsed DELETE from users with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:16:12,982 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:12,982 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-06-02 10:16:12,982 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-06-02 10:16:12,982 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:16:12,984 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:12,984 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:12,984 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:12,984 - compiler.statements - INFO - Dispatching CREATE
+2025-06-02 10:16:12,986 - compiler.statements - INFO - Parsing CREATE statement
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'CREATE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'TABLE')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'books')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:12,986 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'INT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'title')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,988 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:12,989 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:12,989 - compiler.statements - INFO - Parsed CREATE TABLE books with columns [('id', 'INT'), ('title', 'TEXT')]
+2025-06-02 10:16:13,283 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:13,283 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-06-02 10:16:13,285 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:13,285 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:13,285 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,285 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:13,286 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,286 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,286 - compiler.parser - INFO - SELECT list: ['name']
+2025-06-02 10:16:13,286 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'employees')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'salary')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '50000')
+2025-06-02 10:16:13,288 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,290 - compiler.parser - DEBUG - WHERE clause: salary >= 50000
+2025-06-02 10:16:13,290 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,290 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:13,290 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,290 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:13,290 - compiler.statements - INFO - Parsed SELECT on table employees with columns ['name'] and where {'column': 'salary', 'operator': '>=', 'value': '50000'}
+2025-06-02 10:16:13,591 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:13,593 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:13,593 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-06-02 10:16:13,594 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:16:13,594 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:13,594 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,594 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:13,596 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:13,596 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:16:13,596 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,598 - compiler.parser - INFO - SELECT list: ['id', 'name']
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'orders')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:13,598 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'date')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'2024-01-01'")
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - WHERE clause: date = '2024-01-01'
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:16:13,600 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:16:13,600 - compiler.statements - INFO - Parsed SELECT on table orders with columns ['id', 'name'] and where {'column': 'date', 'operator': '=', 'value': "'2024-01-01'"}
+2025-06-02 10:16:13,907 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:13,907 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:13,907 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:16:13,907 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:13,908 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-06-02 10:16:13,908 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-06-02 10:16:14,185 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:16:14,185 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:16:14,185 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:16:14,187 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-06-02 10:16:14,187 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:14,187 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:16:14,187 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:14,187 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:16:14,187 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:16:14,187 - compiler.parser - ERROR - No columns found in SELECT list
+2025-06-02 10:16:14,187 - __main__ - ERROR - Syntax error: No columns found in SELECT list
+2025-06-02 10:22:35,401 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-06-02 10:22:35,403 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:35,403 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:35,403 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:35,403 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:22:35,405 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:22:35,405 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '*')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:35,405 - compiler.parser - INFO - SELECT list: ['*']
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:35,405 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '30')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - WHERE clause: age > 30
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,407 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:35,409 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,409 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:35,409 - compiler.statements - INFO - Parsed SELECT on table users with columns ['*'] and where {'column': 'age', 'operator': '>', 'value': '30'}
+2025-06-02 10:22:35,694 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:35,694 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-06-02 10:22:35,694 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-06-02 10:22:35,694 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:22:35,696 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:35,696 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:35,696 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:22:35,698 - compiler.statements - INFO - Dispatching INSERT
+2025-06-02 10:22:35,698 - compiler.statements - INFO - Parsing INSERT statement
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INSERT')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INSERT')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INTO')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INTO')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Matched ('LPAREN', '(')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:35,698 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'VALUES')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'VALUES')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:35,700 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '25')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:35,702 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:35,704 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:35,704 - compiler.statements - INFO - Parsed INSERT into users with columns ['name', 'age'] and values ["'Alice'", '25']
+2025-06-02 10:22:36,022 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:22:36,022 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:36,022 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:36,022 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:22:36,022 - compiler.statements - INFO - Dispatching UPDATE
+2025-06-02 10:22:36,022 - compiler.statements - INFO - Parsing UPDATE statement
+2025-06-02 10:22:36,022 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'UPDATE')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'UPDATE')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SET')
+2025-06-02 10:22:36,026 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SET')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Expect matched: ('OPERATOR', '=')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:22:36,027 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '26')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,028 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,029 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:36,029 - compiler.statements - INFO - Parsed UPDATE users set [('age', '26')] with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:22:36,301 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-02 10:22:36,303 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:36,303 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:22:36,304 - compiler.statements - INFO - Dispatching DELETE
+2025-06-02 10:22:36,304 - compiler.statements - INFO - Parsing DELETE statement
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'DELETE')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'DELETE')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,304 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-02 10:22:36,306 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,307 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-02 10:22:36,307 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,307 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:36,307 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,307 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:36,307 - compiler.statements - INFO - Parsed DELETE from users with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-02 10:22:36,600 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-06-02 10:22:36,601 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:22:36,602 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-06-02 10:22:36,602 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-06-02 10:22:36,602 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-02 10:22:36,602 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:36,602 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:36,602 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:22:36,603 - compiler.statements - INFO - Dispatching CREATE
+2025-06-02 10:22:36,603 - compiler.statements - INFO - Parsing CREATE statement
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'CREATE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'CREATE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'TABLE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'TABLE')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'books')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:36,603 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'INT')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'title')
+2025-06-02 10:22:36,605 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'TEXT')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-02 10:22:36,607 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,608 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:36,608 - compiler.statements - INFO - Parsed CREATE TABLE books with columns [('id', 'INT'), ('title', 'TEXT')]
+2025-06-02 10:22:36,967 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-06-02 10:22:36,967 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-02 10:22:36,969 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:22:36,969 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-06-02 10:22:36,969 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:36,969 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:36,969 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:22:36,969 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,969 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:36,969 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,971 - compiler.parser - INFO - SELECT list: ['name']
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'employees')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'salary')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-02 10:22:36,971 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-02 10:22:36,973 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:36,973 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:22:36,973 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:22:36,973 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '50000')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - WHERE clause: salary >= 50000
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:36,975 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:36,975 - compiler.statements - INFO - Parsed SELECT on table employees with columns ['name'] and where {'column': 'salary', 'operator': '>=', 'value': '50000'}
+2025-06-02 10:22:37,374 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-06-02 10:22:37,376 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-02 10:22:37,376 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:37,376 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:37,378 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:22:37,378 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:37,378 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:37,378 - compiler.parser - INFO - SELECT list: ['id', 'name']
+2025-06-02 10:22:37,378 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'orders')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-02 10:22:37,380 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'date')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'2024-01-01'")
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - WHERE clause: date = '2024-01-01'
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-02 10:22:37,381 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-02 10:22:37,381 - compiler.statements - INFO - Parsed SELECT on table orders with columns ['id', 'name'] and where {'column': 'date', 'operator': '=', 'value': "'2024-01-01'"}
+2025-06-02 10:22:37,702 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:37,702 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:22:37,702 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-02 10:22:37,702 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:37,702 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-06-02 10:22:37,702 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-06-02 10:22:38,029 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-02 10:22:38,029 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-02 10:22:38,029 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-02 10:22:38,031 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-06-02 10:22:38,031 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-02 10:22:38,031 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:38,031 - compiler.statements - INFO - Dispatching SELECT
+2025-06-02 10:22:38,031 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-02 10:22:38,031 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:38,031 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:38,031 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-02 10:22:38,031 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:38,032 - compiler.parser - INFO - Parsing SELECT list
+2025-06-02 10:22:38,032 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-02 10:22:38,032 - compiler.parser - ERROR - No columns found in SELECT list
+2025-06-02 10:22:38,032 - __main__ - ERROR - Syntax error: No columns found in SELECT list
+2025-06-03 13:29:03,800 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 30
+2025-06-03 13:29:03,802 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:03,802 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:03,802 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:03,804 - compiler.statements - INFO - Dispatching SELECT
+2025-06-03 13:29:03,804 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-03 13:29:03,804 - compiler.parser - INFO - Parsing SELECT list
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('OPERATOR', '*')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '*')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:03,804 - compiler.parser - INFO - SELECT list: ['*']
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('NUMBER', '30')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '30')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - WHERE clause: age > 30
+2025-06-03 13:29:03,804 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:03,806 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:03,806 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:03,806 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:03,806 - compiler.statements - INFO - Parsed SELECT on table users with columns ['*'] and where {'column': 'age', 'operator': '>', 'value': '30'}
+2025-06-03 13:29:04,514 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INSERT
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> INTO
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> VALUES
+2025-06-03 13:29:04,514 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-03 13:29:04,516 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-03 13:29:04,516 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-03 13:29:04,516 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 25
+2025-06-03 13:29:04,516 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-03 13:29:04,516 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:04,516 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-03 13:29:04,516 - compiler.statements - INFO - Dispatching INSERT
+2025-06-03 13:29:04,516 - compiler.statements - INFO - Parsing INSERT statement
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INSERT')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INSERT')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INSERT')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'INTO')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'INTO')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'INTO')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Matched ('LPAREN', '(')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:04,516 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'VALUES')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'VALUES')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'VALUES')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-03 13:29:04,518 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('NUMBER', '25')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '25')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:04,520 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:04,520 - compiler.statements - INFO - Parsed INSERT into users with columns ['name', 'age'] and values ["'Alice'", '25']
+2025-06-03 13:29:05,019 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> UPDATE
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SET
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> age
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 26
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-03 13:29:05,020 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:05,020 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:05,020 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-03 13:29:05,020 - compiler.statements - INFO - Dispatching UPDATE
+2025-06-03 13:29:05,020 - compiler.statements - INFO - Parsing UPDATE statement
+2025-06-03 13:29:05,020 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'UPDATE')
+2025-06-03 13:29:05,020 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'UPDATE')
+2025-06-03 13:29:05,020 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'UPDATE')
+2025-06-03 13:29:05,020 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SET')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SET')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SET')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'age')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Expect matched: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('NUMBER', '26')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '26')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,023 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,025 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-03 13:29:05,025 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,025 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:05,025 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,025 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:05,025 - compiler.statements - INFO - Parsed UPDATE users set [('age', '26')] with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-03 13:29:05,478 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> DELETE
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> users
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: STRING -> 'Alice'
+2025-06-03 13:29:05,478 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:05,478 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:05,478 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-03 13:29:05,478 - compiler.statements - INFO - Dispatching DELETE
+2025-06-03 13:29:05,478 - compiler.statements - INFO - Parsing DELETE statement
+2025-06-03 13:29:05,478 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'DELETE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'DELETE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'DELETE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'users')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'Alice'")
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - WHERE clause: name = 'Alice'
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:05,480 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:05,480 - compiler.statements - INFO - Parsed DELETE from users with where {'column': 'name', 'operator': '=', 'value': "'Alice'"}
+2025-06-03 13:29:06,170 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> CREATE
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> TABLE
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> books
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: LPAREN -> (
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> INT
+2025-06-03 13:29:06,170 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-03 13:29:06,172 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> title
+2025-06-03 13:29:06,172 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> TEXT
+2025-06-03 13:29:06,172 - compiler.tokenizer - DEBUG - Tokenized: RPAREN -> )
+2025-06-03 13:29:06,172 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:06,172 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-03 13:29:06,172 - compiler.statements - INFO - Dispatching CREATE
+2025-06-03 13:29:06,172 - compiler.statements - INFO - Parsing CREATE statement
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'CREATE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'CREATE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'CREATE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'TABLE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'TABLE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'TABLE')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'books')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'books')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('LPAREN', '(')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Expect matched: ('LPAREN', '(')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('LPAREN', '(')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'INT')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'INT')
+2025-06-03 13:29:06,172 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Matched ('COMMA', ',')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'title')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'title')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'TEXT')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'TEXT')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('RPAREN', ')')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Expect matched: ('RPAREN', ')')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Advancing from token: ('RPAREN', ')')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,174 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:06,174 - compiler.statements - INFO - Parsed CREATE TABLE books with columns [('id', 'INT'), ('title', 'TEXT')]
+2025-06-03 13:29:06,953 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> employees
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> salary
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> >
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: NUMBER -> 50000
+2025-06-03 13:29:06,953 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:06,953 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:06,953 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:06,953 - compiler.statements - INFO - Dispatching SELECT
+2025-06-03 13:29:06,953 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:06,955 - compiler.parser - INFO - Parsing SELECT list
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:06,955 - compiler.parser - INFO - SELECT list: ['name']
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'employees')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'employees')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'salary')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'salary')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-03 13:29:06,955 - compiler.parser - DEBUG - Current token: ('OPERATOR', '>')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '>')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('NUMBER', '50000')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Advancing from token: ('NUMBER', '50000')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - WHERE clause: salary >= 50000
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:06,957 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:06,957 - compiler.statements - INFO - Parsed SELECT on table employees with columns ['name'] and where {'column': 'salary', 'operator': '>=', 'value': '50000'}
+2025-06-03 13:29:07,563 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> id
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: COMMA -> ,
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> name
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> orders
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> WHERE
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> date
+2025-06-03 13:29:07,563 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> =
+2025-06-03 13:29:07,565 - compiler.tokenizer - DEBUG - Tokenized: STRING -> '2024-01-01'
+2025-06-03 13:29:07,565 - compiler.tokenizer - DEBUG - Tokenized: SEMICOLON -> ;
+2025-06-03 13:29:07,565 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:07,565 - compiler.statements - INFO - Dispatching SELECT
+2025-06-03 13:29:07,565 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:07,565 - compiler.parser - INFO - Parsing SELECT list
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'id')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('COMMA', ',')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Advancing from token: ('COMMA', ',')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'name')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:07,565 - compiler.parser - INFO - SELECT list: ['id', 'name']
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'FROM')
+2025-06-03 13:29:07,565 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'orders')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'orders')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Matched ('KEYWORD', 'WHERE')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'WHERE')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Parsing WHERE clause
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('IDENTIFIER', 'date')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('IDENTIFIER', 'date')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('OPERATOR', '=')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('OPERATOR', '=')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('STRING', "'2024-01-01'")
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('STRING', "'2024-01-01'")
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - WHERE clause: date = '2024-01-01'
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('SEMICOLON', ';')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Expect matched: ('SEMICOLON', ';')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Advancing from token: ('SEMICOLON', ';')
+2025-06-03 13:29:07,567 - compiler.parser - DEBUG - Current token: ('EOF', None)
+2025-06-03 13:29:07,567 - compiler.statements - INFO - Parsed SELECT on table orders with columns ['id', 'name'] and where {'column': 'date', 'operator': '=', 'value': "'2024-01-01'"}
+2025-06-03 13:29:08,180 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:08,180 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-03 13:29:08,180 - compiler.tokenizer - DEBUG - Tokenized: OPERATOR -> *
+2025-06-03 13:29:08,180 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:08,180 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> bad
+2025-06-03 13:29:08,180 - __main__ - ERROR - Tokenization error: Unexpected character: @ at position 17
+2025-06-03 13:29:08,699 - compiler.tokenizer - INFO - Starting tokenization process.
+2025-06-03 13:29:08,699 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> SELECT
+2025-06-03 13:29:08,699 - compiler.tokenizer - DEBUG - Tokenized: KEYWORD -> FROM
+2025-06-03 13:29:08,699 - compiler.tokenizer - DEBUG - Tokenized: IDENTIFIER -> missing_column
+2025-06-03 13:29:08,701 - compiler.tokenizer - INFO - Tokenization complete.
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:08,701 - compiler.statements - INFO - Dispatching SELECT
+2025-06-03 13:29:08,701 - compiler.statements - INFO - Parsing SELECT statement
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Expect matched: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Advancing from token: ('KEYWORD', 'SELECT')
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:08,701 - compiler.parser - INFO - Parsing SELECT list
+2025-06-03 13:29:08,701 - compiler.parser - DEBUG - Current token: ('KEYWORD', 'FROM')
+2025-06-03 13:29:08,701 - compiler.parser - ERROR - No columns found in SELECT list
+2025-06-03 13:29:08,701 - __main__ - ERROR - Syntax error: No columns found in SELECT list

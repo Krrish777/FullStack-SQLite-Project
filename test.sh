@@ -36,3 +36,5 @@ for sql in "${TEST_CASES[@]}"; do
 done
 
 echo -e "\033[1;32mAll tests completed.\033[0m"
+
+read -p "Press Enter to exit..."

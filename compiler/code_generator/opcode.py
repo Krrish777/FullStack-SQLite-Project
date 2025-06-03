@@ -1,5 +1,11 @@
 from enum import Enum, auto
 class Opcode(Enum):
+    """
+    This allows us to define a set of named constants for the various operations
+    that can be performed by the query execution engine. Each operation corresponds
+    to a specific action that the engine can take, such as manipulating data, 
+    controlling flow, or performing comparisons.
+    """
     # Table & Schema Operations
     CREATE_TABLE = auto()
     DROP_TABLE = auto()

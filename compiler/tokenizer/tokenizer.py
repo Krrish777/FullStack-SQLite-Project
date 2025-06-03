@@ -1,7 +1,7 @@
 import re
 from utils.errors import TokenizationError
 from utils.logger import get_logger
-from compiler.token_definitions import TOKEN_PATTERN
+from compiler.tokenizer.token_definitions import TOKEN_PATTERN
 
 logger = get_logger(__name__)
 

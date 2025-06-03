@@ -3,7 +3,7 @@ import argparse
 import json
 
 from compiler.tokenizer import Tokenizer
-from compiler.statements import parse_statement
+from compiler.parser.statements import parse_statement
 from compiler.parser import Parser
 
 from utils.errors import TokenizationError

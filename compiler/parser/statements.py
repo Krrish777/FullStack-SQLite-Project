@@ -214,7 +214,7 @@ def parse_update_statement(parser):
         raise SyntaxError("Expected table name in UPDATE")
     table=tok[1]; parser.advance()
     parser.expect("KEYWORD","SET")
-    sets=[]
+    set=[]
     while True:
         tok=parser.current_token()
         if not tok or tok[0]!="IDENTIFIER":
@@ -226,12 +226,12 @@ def parse_update_statement(parser):
             logger.error("Expected value in UPDATE")
             raise SyntaxError("Expected value in UPDATE")
         val=tok[1]; parser.advance()
-        sets.append((col,val))
+        set.append((col,val))
         if not parser.match("COMMA"):
             break
     where=None
     if parser.match("KEYWORD","WHERE"):
         where=parser.parse_where_clause()
     parser.expect("SEMICOLON")
-    logger.info(f"Parsed UPDATE {table} set {sets} with where {where}")
-    return {"type":"UPDATE","table":table,"set":sets,"where":where}
+    logger.info(f"Parsed UPDATE {table} set {set} with where {where}")
+    return {"type":"UPDATE","table":table,"set":set,"where":where}

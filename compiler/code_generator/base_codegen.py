@@ -7,6 +7,11 @@ class BaseCodeGenerator(ABC):
     """
     def __init__(self, ast):
         self.ast = ast
+        self.label_counter = 0
+        
+    def new_label(self, prefix="label"):
+        self.label_counter += 1
+        return f"{prefix}_{self.label_counter}"
         
     @abstractmethod # This method must be implemented by subclasses
     def generate(self):

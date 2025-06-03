@@ -5,6 +5,7 @@ import json
 from compiler.tokenizer import Tokenizer
 from compiler.parser.statements import parse_statement
 from compiler.parser import Parser
+from compiler.code_generator import generate
 
 from utils.errors import TokenizationError
 from utils.logger import get_logger
@@ -83,6 +84,12 @@ if __name__ == "__main__":
 
         print_colored("\nParse Tree:", color=CYAN, bold=True)
         print_tree(parse_tree)  # Print the formatted tree structure with branch symbols
+        
+        codegen = generate(parse_tree)
+        print_colored("\nGenerated Code:", color=MAGENTA, bold=True)
+        for opcode, *args in codegen:
+            args_str = ", ".join(map(str, args))
+            print(f"{opcode.name}({args_str})")
 
     except TokenizationError as e:
         logger.error(f"Tokenization error: {e}")

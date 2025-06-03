@@ -3,16 +3,16 @@ from compiler.code_generator.opcode import Opcode
 
 class SelectCodeGenerator(BaseCodeGenerator):
     def generate(self):
-        table_name = self.ast["table_name"]
+        table = self.ast["table"]
         columns = self.ast["columns"]
-        where = self.ast.get("where_clause", None)
+        where = self.ast.get("where", None)
 
         loop_label = self.new_label("loop")
         end_label = self.new_label("end")
         skip_label = self.new_label("skip") if where else None
 
         code = [
-            (Opcode.OPEN_TABLE, table_name),
+            (Opcode.OPEN_TABLE, table),
             (Opcode.SCAN_START,),
             (Opcode.LABEL, loop_label),
             (Opcode.SCAN_NEXT,),
@@ -42,6 +42,7 @@ class SelectCodeGenerator(BaseCodeGenerator):
 
     def _get_comparison_opcode(self, operator):
         return {
+            "=": Opcode.COMPARE_EQ,
             "==": Opcode.COMPARE_EQ,
             "!=": Opcode.COMPARE_NEQ,
             "<": Opcode.COMPARE_LT,

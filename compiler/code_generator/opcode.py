@@ -19,8 +19,9 @@ class Opcode(Enum):
     # Data Manipulation
     LOAD_CONST = auto()         # Push a constant onto the stack
     LOAD_COLUMN = auto()        # Load a column from the current row
-    INSERT_ROW = auto()         # Insert a new row into the table
-    DELETE_ROW = auto()         # Delete the current row from the table
+    INSERT_ROW = auto()        # Insert a new row into the table
+    UPDATE_ROW = auto()        
+    DELETE_ROW = auto()       # Delete the current row from the table
     UPDATE_COLUMN = auto()      # Update a column in the current row
     
     # Control Flow

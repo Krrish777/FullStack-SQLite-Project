@@ -31,6 +31,8 @@ def parse_statement(parser):
         return parse_create_statement(parser)
     if kw == "UPDATE":
         return parse_update_statement(parser)
+    if kw == "DROP":
+        return parse_drop_statement(parser)
     raise SyntaxError(f"Unknown statement: {kw}")
 
 def parse_select_statement(parser):
@@ -235,3 +237,21 @@ def parse_update_statement(parser):
     parser.expect("SEMICOLON")
     logger.info(f"Parsed UPDATE {table} set {set} with where {where}")
     return {"type":"UPDATE","table":table,"set":set,"where":where}
+
+def parse_drop_statement(parser):
+    """
+    Parses a DROP TABLE statement into an AST.
+    Example SQL: DROP TABLE users;
+    """
+    logger.info("Parsing DROP TABLE statement")
+
+    parser.expect("KEYWORD", "DROP")
+    parser.expect("KEYWORD", "TABLE")
+    table_name = parser.expect("IDENTIFIER")
+    parser.expect("SEMICOLON")
+
+    logger.info(f"Parsed DROP TABLE {table_name}")
+    return {
+        "type": "DROP",
+        "table_name": table_name
+    }

@@ -1,0 +1,2909 @@
+Running test: "CREATE TABLE users (id INT, name TEXT);"
+Test passed: CREATE TABLE users (id INT, name TEXT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : name
+ IDENTIFIER  : TEXT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- users
+`-- columns:
+    |-- ('id', 'INT')
+    `-- ('name', 'TEXT')
+
+Generated Code:
+CREATE_TABLE(users, [('id', 'INT'), ('name', 'TEXT')])
+----------------------------------------
+Running test: "CREATE TABLE employees (id INT, name TEXT, salary INT);"
+Test passed: CREATE TABLE employees (id INT, name TEXT, salary INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : employees
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : name
+ IDENTIFIER  : TEXT
+ COMMA       : ,
+ IDENTIFIER  : salary
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- employees
+`-- columns:
+    |-- ('id', 'INT')
+    |-- ('name', 'TEXT')
+    `-- ('salary', 'INT')
+
+Generated Code:
+CREATE_TABLE(employees, [('id', 'INT'), ('name', 'TEXT'), ('salary', 'INT')])
+----------------------------------------
+Running test: "CREATE TABLE logs (timestamp TEXT, message TEXT);"
+Test passed: CREATE TABLE logs (timestamp TEXT, message TEXT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : logs
+ LPAREN      : (
+ IDENTIFIER  : timestamp
+ IDENTIFIER  : TEXT
+ COMMA       : ,
+ IDENTIFIER  : message
+ IDENTIFIER  : TEXT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- logs
+`-- columns:
+    |-- ('timestamp', 'TEXT')
+    `-- ('message', 'TEXT')
+
+Generated Code:
+CREATE_TABLE(logs, [('timestamp', 'TEXT'), ('message', 'TEXT')])
+----------------------------------------
+Running test: "INSERT INTO users (id, name) VALUES (1, 'Alice');"
+Test passed: INSERT INTO users (id, name) VALUES (1, 'Alice');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ COMMA       : ,
+ STRING      : 'Alice'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- users
+`-- columns:
+    |-- id
+    `-- name
+`-- values:
+    |-- 1
+    `-- 'Alice'
+
+Generated Code:
+LOAD_CONST(1)
+LOAD_CONST('Alice')
+INSERT_ROW(users)
+----------------------------------------
+Running test: "INSERT INTO users (id, name) VALUES (2, 'Bob');"
+Test passed: INSERT INTO users (id, name) VALUES (2, 'Bob');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 2
+ COMMA       : ,
+ STRING      : 'Bob'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- users
+`-- columns:
+    |-- id
+    `-- name
+`-- values:
+    |-- 2
+    `-- 'Bob'
+
+Generated Code:
+LOAD_CONST(2)
+LOAD_CONST('Bob')
+INSERT_ROW(users)
+----------------------------------------
+Running test: "INSERT INTO employees (id, name, salary) VALUES (1, 'Eve', 60000);"
+Test passed: INSERT INTO employees (id, name, salary) VALUES (1, 'Eve', 60000);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : employees
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ COMMA       : ,
+ IDENTIFIER  : salary
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ COMMA       : ,
+ STRING      : 'Eve'
+ COMMA       : ,
+ NUMBER      : 60000
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- employees
+`-- columns:
+    |-- id
+    |-- name
+    `-- salary
+`-- values:
+    |-- 1
+    |-- 'Eve'
+    `-- 60000
+
+Generated Code:
+LOAD_CONST(1)
+LOAD_CONST('Eve')
+LOAD_CONST(60000)
+INSERT_ROW(employees)
+----------------------------------------
+Running test: "INSERT INTO employees (id, name, salary) VALUES (2, 'Mallory', 45000);"
+Test passed: INSERT INTO employees (id, name, salary) VALUES (2, 'Mallory', 45000);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : employees
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ COMMA       : ,
+ IDENTIFIER  : salary
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 2
+ COMMA       : ,
+ STRING      : 'Mallory'
+ COMMA       : ,
+ NUMBER      : 45000
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- employees
+`-- columns:
+    |-- id
+    |-- name
+    `-- salary
+`-- values:
+    |-- 2
+    |-- 'Mallory'
+    `-- 45000
+
+Generated Code:
+LOAD_CONST(2)
+LOAD_CONST('Mallory')
+LOAD_CONST(45000)
+INSERT_ROW(employees)
+----------------------------------------
+Running test: "SELECT * FROM users;"
+Test passed: SELECT * FROM users;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['*'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT name FROM users;"
+Test passed: SELECT name FROM users;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : name
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- name
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['name'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT id, name FROM employees;"
+Test passed: SELECT id, name FROM employees;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ KEYWORD     : FROM
+ IDENTIFIER  : employees
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    |-- id
+    `-- name
+`-- table:
+    |-- employees
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(employees)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['id', 'name'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM employees WHERE salary >= 50000;"
+Test passed: SELECT * FROM employees WHERE salary >= 50000;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : employees
+ KEYWORD     : WHERE
+ IDENTIFIER  : salary
+ OPERATOR    : >
+ OPERATOR    : =
+ NUMBER      : 50000
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- employees
+`-- where:
+    `-- column:
+        |-- salary
+    `-- operator:
+        |-- >=
+    `-- value:
+        `-- 50000
+
+Generated Code:
+OPEN_TABLE(employees)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(salary)
+LOAD_CONST(50000)
+COMPARE_GTE()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT id FROM users WHERE name = 'Alice';"
+Test passed: SELECT id FROM users WHERE name = 'Alice';
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : id
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Alice'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- id
+`-- table:
+    |-- users
+`-- where:
+    `-- column:
+        |-- name
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Alice'
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(name)
+LOAD_CONST('Alice')
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['id'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "UPDATE users SET name = 'Alicia' WHERE id = 1;"
+Test passed: UPDATE users SET name = 'Alicia' WHERE id = 1;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : users
+ KEYWORD     : SET
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Alicia'
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- users
+`-- set:
+    `-- ('name', "'Alicia'")
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(1)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST('Alicia')
+UPDATE_COLUMN(name)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "UPDATE employees SET salary = 70000 WHERE name = 'Eve';"
+Test passed: UPDATE employees SET salary = 70000 WHERE name = 'Eve';
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : employees
+ KEYWORD     : SET
+ IDENTIFIER  : salary
+ OPERATOR    : =
+ NUMBER      : 70000
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Eve'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- employees
+`-- set:
+    `-- ('salary', '70000')
+`-- where:
+    `-- column:
+        |-- name
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Eve'
+
+Generated Code:
+OPEN_TABLE(employees)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(name)
+LOAD_CONST('Eve')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST(70000)
+UPDATE_COLUMN(salary)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM users WHERE id = 2;"
+Test passed: DELETE FROM users WHERE id = 2;
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 2
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- users
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 2
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(2)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM employees WHERE name = 'Mallory';"
+Test passed: DELETE FROM employees WHERE name = 'Mallory';
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : employees
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Mallory'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- employees
+`-- where:
+    `-- column:
+        |-- name
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Mallory'
+
+Generated Code:
+OPEN_TABLE(employees)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(name)
+LOAD_CONST('Mallory')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DROP TABLE users;"
+Test passed: DROP TABLE users;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : TABLE
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+Running test: "DROP TABLE employees;"
+Test passed: DROP TABLE employees;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : TABLE
+ IDENTIFIER  : employees
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+Running test: "CREATE TABLE products (id INT, price INT);"
+Test passed: CREATE TABLE products (id INT, price INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : products
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : price
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- products
+`-- columns:
+    |-- ('id', 'INT')
+    `-- ('price', 'INT')
+
+Generated Code:
+CREATE_TABLE(products, [('id', 'INT'), ('price', 'INT')])
+----------------------------------------
+Running test: "INSERT INTO products (id, price) VALUES (1, 100);"
+Test passed: INSERT INTO products (id, price) VALUES (1, 100);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : products
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : price
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ COMMA       : ,
+ NUMBER      : 100
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- products
+`-- columns:
+    |-- id
+    `-- price
+`-- values:
+    |-- 1
+    `-- 100
+
+Generated Code:
+LOAD_CONST(1)
+LOAD_CONST(100)
+INSERT_ROW(products)
+----------------------------------------
+Running test: "UPDATE products SET price = 120 WHERE id = 1;"
+Test passed: UPDATE products SET price = 120 WHERE id = 1;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : products
+ KEYWORD     : SET
+ IDENTIFIER  : price
+ OPERATOR    : =
+ NUMBER      : 120
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- products
+`-- set:
+    `-- ('price', '120')
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1
+
+Generated Code:
+OPEN_TABLE(products)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(1)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST(120)
+UPDATE_COLUMN(price)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM products WHERE price > 100;"
+Test passed: SELECT * FROM products WHERE price > 100;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : products
+ KEYWORD     : WHERE
+ IDENTIFIER  : price
+ OPERATOR    : >
+ NUMBER      : 100
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- products
+`-- where:
+    `-- column:
+        |-- price
+    `-- operator:
+        |-- >
+    `-- value:
+        `-- 100
+
+Generated Code:
+OPEN_TABLE(products)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(price)
+LOAD_CONST(100)
+COMPARE_GT()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM products WHERE id = 1;"
+Test passed: DELETE FROM products WHERE id = 1;
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : products
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- products
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1
+
+Generated Code:
+OPEN_TABLE(products)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(1)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "CREATE TABLE a (x INT);"
+Test passed: CREATE TABLE a (x INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : a
+ LPAREN      : (
+ IDENTIFIER  : x
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- a
+`-- columns:
+    `-- ('x', 'INT')
+
+Generated Code:
+CREATE_TABLE(a, [('x', 'INT')])
+----------------------------------------
+Running test: "INSERT INTO a (x) VALUES (1);"
+Test passed: INSERT INTO a (x) VALUES (1);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : a
+ LPAREN      : (
+ IDENTIFIER  : x
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- a
+`-- columns:
+    `-- x
+`-- values:
+    `-- 1
+
+Generated Code:
+LOAD_CONST(1)
+INSERT_ROW(a)
+----------------------------------------
+Running test: "INSERT INTO a (x) VALUES (2);"
+Test passed: INSERT INTO a (x) VALUES (2);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : a
+ LPAREN      : (
+ IDENTIFIER  : x
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 2
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- a
+`-- columns:
+    `-- x
+`-- values:
+    `-- 2
+
+Generated Code:
+LOAD_CONST(2)
+INSERT_ROW(a)
+----------------------------------------
+Running test: "SELECT x FROM a WHERE x = 2;"
+Test passed: SELECT x FROM a WHERE x = 2;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : x
+ KEYWORD     : FROM
+ IDENTIFIER  : a
+ KEYWORD     : WHERE
+ IDENTIFIER  : x
+ OPERATOR    : =
+ NUMBER      : 2
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- x
+`-- table:
+    |-- a
+`-- where:
+    `-- column:
+        |-- x
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 2
+
+Generated Code:
+OPEN_TABLE(a)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(x)
+LOAD_CONST(2)
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['x'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "DROP TABLE a;"
+Test passed: DROP TABLE a;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : TABLE
+ IDENTIFIER  : a
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+Running test: "CREATE TABLE t (c INT);"
+Test passed: CREATE TABLE t (c INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : t
+ LPAREN      : (
+ IDENTIFIER  : c
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- t
+`-- columns:
+    `-- ('c', 'INT')
+
+Generated Code:
+CREATE_TABLE(t, [('c', 'INT')])
+----------------------------------------
+Running test: "SELECT * FROM t WHERE c = 5;"
+Test passed: SELECT * FROM t WHERE c = 5;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : t
+ KEYWORD     : WHERE
+ IDENTIFIER  : c
+ OPERATOR    : =
+ NUMBER      : 5
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- t
+`-- where:
+    `-- column:
+        |-- c
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 5
+
+Generated Code:
+OPEN_TABLE(t)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(c)
+LOAD_CONST(5)
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "select * from users;"
+Test passed: select * from users;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['*'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "Select name from USERS;"
+Test passed: Select name from USERS;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : name
+ KEYWORD     : FROM
+ IDENTIFIER  : USERS
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- name
+`-- table:
+    |-- USERS
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(USERS)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['name'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT    *    FROM    users;"
+Test passed: SELECT    *    FROM    users;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['*'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "select id,name from users;"
+Test passed: select id,name from users;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    |-- id
+    `-- name
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['id', 'name'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "INSERT INTO users(name,age)VALUES('Bob',30);"
+Test passed: INSERT INTO users(name,age)VALUES('Bob',30);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : name
+ COMMA       : ,
+ IDENTIFIER  : age
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'Bob'
+ COMMA       : ,
+ NUMBER      : 30
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- users
+`-- columns:
+    |-- name
+    `-- age
+`-- values:
+    |-- 'Bob'
+    `-- 30
+
+Generated Code:
+LOAD_CONST('Bob')
+LOAD_CONST(30)
+INSERT_ROW(users)
+----------------------------------------
+Running test: "Insert into users ( name , age ) values ( 'Carol' , 22 );"
+Test passed: Insert into users ( name , age ) values ( 'Carol' , 22 );
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : name
+ COMMA       : ,
+ IDENTIFIER  : age
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'Carol'
+ COMMA       : ,
+ NUMBER      : 22
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- users
+`-- columns:
+    |-- name
+    `-- age
+`-- values:
+    |-- 'Carol'
+    `-- 22
+
+Generated Code:
+LOAD_CONST('Carol')
+LOAD_CONST(22)
+INSERT_ROW(users)
+----------------------------------------
+Running test: "   SELECT * FROM users WHERE age   <  40 ;"
+Test passed:    SELECT * FROM users WHERE age   <  40 ;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : age
+ OPERATOR    : <
+ NUMBER      : 40
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- users
+`-- where:
+    `-- column:
+        |-- age
+    `-- operator:
+        |-- <
+    `-- value:
+        `-- 40
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(age)
+LOAD_CONST(40)
+COMPARE_LT()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "UPDATE users SET name='Dave' WHERE id=1;"
+Test passed: UPDATE users SET name='Dave' WHERE id=1;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : users
+ KEYWORD     : SET
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Dave'
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- users
+`-- set:
+    `-- ('name', "'Dave'")
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(1)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST('Dave')
+UPDATE_COLUMN(name)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "update USERS set age = 33 where name = 'Bob';"
+Test passed: update USERS set age = 33 where name = 'Bob';
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : USERS
+ KEYWORD     : SET
+ IDENTIFIER  : age
+ OPERATOR    : =
+ NUMBER      : 33
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Bob'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- USERS
+`-- set:
+    `-- ('age', '33')
+`-- where:
+    `-- column:
+        |-- name
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Bob'
+
+Generated Code:
+OPEN_TABLE(USERS)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(name)
+LOAD_CONST('Bob')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST(33)
+UPDATE_COLUMN(age)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE    FROM   users   WHERE name='Dave';"
+Test passed: DELETE    FROM   users   WHERE name='Dave';
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Dave'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- users
+`-- where:
+    `-- column:
+        |-- name
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Dave'
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(name)
+LOAD_CONST('Dave')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM bad@table;"
+Test passed: SELECT * FROM bad@table;
+Tokenization error: Unexpected character: @ at position 17
+----------------------------------------
+Running test: "SELECT FROM missing_column;"
+Test passed: SELECT FROM missing_column;
+
+Tokens:
+ KEYWORD     : SELECT
+ KEYWORD     : FROM
+ IDENTIFIER  : missing_column
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: No columns found in SELECT list
+----------------------------------------
+Running test: "INSERT INTO users name, age VALUES ('Alice', 25);"
+Test passed: INSERT INTO users name, age VALUES ('Alice', 25);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ IDENTIFIER  : name
+ COMMA       : ,
+ IDENTIFIER  : age
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'Alice'
+ COMMA       : ,
+ NUMBER      : 25
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD VALUES but got IDENTIFIER name
+----------------------------------------
+Running test: "UPDATE SET age = 30 WHERE name = 'Alice';"
+Test passed: UPDATE SET age = 30 WHERE name = 'Alice';
+
+Tokens:
+ KEYWORD     : UPDATE
+ KEYWORD     : SET
+ IDENTIFIER  : age
+ OPERATOR    : =
+ NUMBER      : 30
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Alice'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected table name in UPDATE
+----------------------------------------
+Running test: "DELETE FROM WHERE id = 1;"
+Test passed: DELETE FROM WHERE id = 1;
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected table name in DELETE
+----------------------------------------
+Running test: "CREATE TABLE missing_paren id INT, name TEXT;"
+Test passed: CREATE TABLE missing_paren id INT, name TEXT;
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : missing_paren
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : name
+ IDENTIFIER  : TEXT
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected LPAREN but got IDENTIFIER id
+----------------------------------------
+Running test: "CREATE users (id INT);"
+Test passed: CREATE users (id INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD TABLE but got IDENTIFIER users
+----------------------------------------
+Running test: "INSERT INTO users (name age) VALUES ('John', 22);"
+Test passed: INSERT INTO users (name age) VALUES ('John', 22);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : name
+ IDENTIFIER  : age
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'John'
+ COMMA       : ,
+ NUMBER      : 22
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected RPAREN but got IDENTIFIER age
+----------------------------------------
+Running test: "DROP FROM users;"
+Test passed: DROP FROM users;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+Running test: "SELECT * users WHERE age = 30;"
+Test passed: SELECT * users WHERE age = 30;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : age
+ OPERATOR    : =
+ NUMBER      : 30
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD FROM but got IDENTIFIER users
+----------------------------------------
+Running test: "SELECT id name FROM users;"
+Test passed: SELECT id name FROM users;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : id
+ IDENTIFIER  : name
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    |-- id
+    `-- name
+`-- table:
+    |-- users
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(users)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['id', 'name'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "UPDATE users SET = 5 WHERE id = 1;"
+Test passed: UPDATE users SET = 5 WHERE id = 1;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : users
+ KEYWORD     : SET
+ OPERATOR    : =
+ NUMBER      : 5
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected SEMICOLON but got OPERATOR =
+----------------------------------------
+Running test: "SELECT * FROM WHERE age > 30;"
+Test passed: SELECT * FROM WHERE age > 30;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ KEYWORD     : WHERE
+ IDENTIFIER  : age
+ OPERATOR    : >
+ NUMBER      : 30
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected table name after FROM
+----------------------------------------
+Running test: "INSERT users VALUES ('Jake', 28);"
+Test passed: INSERT users VALUES ('Jake', 28);
+
+Tokens:
+ KEYWORD     : INSERT
+ IDENTIFIER  : users
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'Jake'
+ COMMA       : ,
+ NUMBER      : 28
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD INTO but got IDENTIFIER users
+----------------------------------------
+Running test: "INSERT INTO users ('Jake', 28);"
+Test passed: INSERT INTO users ('Jake', 28);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ STRING      : 'Jake'
+ COMMA       : ,
+ NUMBER      : 28
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected column name in INSERT
+----------------------------------------
+Running test: "UPDATE users WHERE name = 'Bob';"
+Test passed: UPDATE users WHERE name = 'Bob';
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Bob'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD SET but got KEYWORD WHERE
+----------------------------------------
+Running test: "DELETE users WHERE id = 1;"
+Test passed: DELETE users WHERE id = 1;
+
+Tokens:
+ KEYWORD     : DELETE
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected KEYWORD FROM but got IDENTIFIER users
+----------------------------------------
+Running test: "CREATE TABLE test id INT;"
+Test passed: CREATE TABLE test id INT;
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : test
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected LPAREN but got IDENTIFIER id
+----------------------------------------
+Running test: "INSERT INTO (name) VALUES ('Bob');"
+Test passed: INSERT INTO (name) VALUES ('Bob');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ LPAREN      : (
+ IDENTIFIER  : name
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : 'Bob'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected table name after INTO
+----------------------------------------
+Running test: "SELECT WHERE id = 1;"
+Test passed: SELECT WHERE id = 1;
+
+Tokens:
+ KEYWORD     : SELECT
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: No columns found in SELECT list
+----------------------------------------
+Running test: "CREATE TABLE bigtable (a INT, b INT, c INT);"
+Test passed: CREATE TABLE bigtable (a INT, b INT, c INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : bigtable
+ LPAREN      : (
+ IDENTIFIER  : a
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : b
+ IDENTIFIER  : INT
+ COMMA       : ,
+ IDENTIFIER  : c
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- bigtable
+`-- columns:
+    |-- ('a', 'INT')
+    |-- ('b', 'INT')
+    `-- ('c', 'INT')
+
+Generated Code:
+CREATE_TABLE(bigtable, [('a', 'INT'), ('b', 'INT'), ('c', 'INT')])
+----------------------------------------
+Running test: "INSERT INTO bigtable (a, b, c) VALUES (1, 2, 3);"
+Test passed: INSERT INTO bigtable (a, b, c) VALUES (1, 2, 3);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : bigtable
+ LPAREN      : (
+ IDENTIFIER  : a
+ COMMA       : ,
+ IDENTIFIER  : b
+ COMMA       : ,
+ IDENTIFIER  : c
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ COMMA       : ,
+ NUMBER      : 2
+ COMMA       : ,
+ NUMBER      : 3
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- bigtable
+`-- columns:
+    |-- a
+    |-- b
+    `-- c
+`-- values:
+    |-- 1
+    |-- 2
+    `-- 3
+
+Generated Code:
+LOAD_CONST(1)
+LOAD_CONST(2)
+LOAD_CONST(3)
+INSERT_ROW(bigtable)
+----------------------------------------
+Running test: "INSERT INTO bigtable (a, b, c) VALUES (4, 5, 6);"
+Test passed: INSERT INTO bigtable (a, b, c) VALUES (4, 5, 6);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : bigtable
+ LPAREN      : (
+ IDENTIFIER  : a
+ COMMA       : ,
+ IDENTIFIER  : b
+ COMMA       : ,
+ IDENTIFIER  : c
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 4
+ COMMA       : ,
+ NUMBER      : 5
+ COMMA       : ,
+ NUMBER      : 6
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- bigtable
+`-- columns:
+    |-- a
+    |-- b
+    `-- c
+`-- values:
+    |-- 4
+    |-- 5
+    `-- 6
+
+Generated Code:
+LOAD_CONST(4)
+LOAD_CONST(5)
+LOAD_CONST(6)
+INSERT_ROW(bigtable)
+----------------------------------------
+Running test: "INSERT INTO bigtable (a, b, c) VALUES (7, 8, 9);"
+Test passed: INSERT INTO bigtable (a, b, c) VALUES (7, 8, 9);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : bigtable
+ LPAREN      : (
+ IDENTIFIER  : a
+ COMMA       : ,
+ IDENTIFIER  : b
+ COMMA       : ,
+ IDENTIFIER  : c
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 7
+ COMMA       : ,
+ NUMBER      : 8
+ COMMA       : ,
+ NUMBER      : 9
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- bigtable
+`-- columns:
+    |-- a
+    |-- b
+    `-- c
+`-- values:
+    |-- 7
+    |-- 8
+    `-- 9
+
+Generated Code:
+LOAD_CONST(7)
+LOAD_CONST(8)
+LOAD_CONST(9)
+INSERT_ROW(bigtable)
+----------------------------------------
+Running test: "UPDATE bigtable SET b = 20 WHERE a = 1;"
+Test passed: UPDATE bigtable SET b = 20 WHERE a = 1;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : bigtable
+ KEYWORD     : SET
+ IDENTIFIER  : b
+ OPERATOR    : =
+ NUMBER      : 20
+ KEYWORD     : WHERE
+ IDENTIFIER  : a
+ OPERATOR    : =
+ NUMBER      : 1
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- bigtable
+`-- set:
+    `-- ('b', '20')
+`-- where:
+    `-- column:
+        |-- a
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1
+
+Generated Code:
+OPEN_TABLE(bigtable)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(a)
+LOAD_CONST(1)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST(20)
+UPDATE_COLUMN(b)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM bigtable WHERE c = 6;"
+Test passed: DELETE FROM bigtable WHERE c = 6;
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : bigtable
+ KEYWORD     : WHERE
+ IDENTIFIER  : c
+ OPERATOR    : =
+ NUMBER      : 6
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- bigtable
+`-- where:
+    `-- column:
+        |-- c
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 6
+
+Generated Code:
+OPEN_TABLE(bigtable)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(c)
+LOAD_CONST(6)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM bigtable;"
+Test passed: SELECT * FROM bigtable;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : bigtable
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- bigtable
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(bigtable)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['*'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "DROP TABLE bigtable;"
+Test passed: DROP TABLE bigtable;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : TABLE
+ IDENTIFIER  : bigtable
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+Running test: "CREATE TABLE test123 (id INT);"
+Test passed: CREATE TABLE test123 (id INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : test123
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- CREATE
+`-- table:
+    |-- test123
+`-- columns:
+    `-- ('id', 'INT')
+
+Generated Code:
+CREATE_TABLE(test123, [('id', 'INT')])
+----------------------------------------
+Running test: "INSERT INTO test123 (id) VALUES (999);"
+Test passed: INSERT INTO test123 (id) VALUES (999);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : test123
+ LPAREN      : (
+ IDENTIFIER  : id
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 999
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- test123
+`-- columns:
+    `-- id
+`-- values:
+    `-- 999
+
+Generated Code:
+LOAD_CONST(999)
+INSERT_ROW(test123)
+----------------------------------------
+Running test: "SELECT id FROM test123 WHERE id != 1000;"
+Test passed: SELECT id FROM test123 WHERE id != 1000;
+Tokenization error: Unexpected character: ! at position 32
+----------------------------------------
+Running test: "UPDATE test123 SET id = 1001 WHERE id = 999;"
+Test passed: UPDATE test123 SET id = 1001 WHERE id = 999;
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : test123
+ KEYWORD     : SET
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1001
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 999
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- test123
+`-- set:
+    `-- ('id', '1001')
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 999
+
+Generated Code:
+OPEN_TABLE(test123)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(999)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST(1001)
+UPDATE_COLUMN(id)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM test123 WHERE id = 1001;"
+Test passed: DELETE FROM test123 WHERE id = 1001;
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : test123
+ KEYWORD     : WHERE
+ IDENTIFIER  : id
+ OPERATOR    : =
+ NUMBER      : 1001
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- test123
+`-- where:
+    `-- column:
+        |-- id
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 1001
+
+Generated Code:
+OPEN_TABLE(test123)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(id)
+LOAD_CONST(1001)
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM logs WHERE message = '';"
+Test passed: SELECT * FROM logs WHERE message = '';
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : logs
+ KEYWORD     : WHERE
+ IDENTIFIER  : message
+ OPERATOR    : =
+ STRING      : ''
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- logs
+`-- where:
+    `-- column:
+        |-- message
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- ''
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(message)
+LOAD_CONST('')
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM logs WHERE timestamp = ' ';"
+Test passed: SELECT * FROM logs WHERE timestamp = ' ';
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : logs
+ KEYWORD     : WHERE
+ IDENTIFIER  : timestamp
+ OPERATOR    : =
+ STRING      : ' '
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- logs
+`-- where:
+    `-- column:
+        |-- timestamp
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- ' '
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(timestamp)
+LOAD_CONST(' ')
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM logs WHERE message = 'hello world';"
+Test passed: SELECT * FROM logs WHERE message = 'hello world';
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : logs
+ KEYWORD     : WHERE
+ IDENTIFIER  : message
+ OPERATOR    : =
+ STRING      : 'hello world'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- logs
+`-- where:
+    `-- column:
+        |-- message
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'hello world'
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+LOAD_COLUMN(message)
+LOAD_CONST('hello world')
+COMPARE_EQ()
+JUMP_IF_FALSE(skip_3)
+EMIT_ROW(['*'])
+LABEL(skip_3)
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "UPDATE logs SET message = '' WHERE timestamp = '2024-01-01';"
+Test passed: UPDATE logs SET message = '' WHERE timestamp = '2024-01-01';
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : logs
+ KEYWORD     : SET
+ IDENTIFIER  : message
+ OPERATOR    : =
+ STRING      : ''
+ KEYWORD     : WHERE
+ IDENTIFIER  : timestamp
+ OPERATOR    : =
+ STRING      : '2024-01-01'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- UPDATE
+`-- table:
+    |-- logs
+`-- set:
+    `-- ('message', "''")
+`-- where:
+    `-- column:
+        |-- timestamp
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- '2024-01-01'
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(timestamp)
+LOAD_CONST('2024-01-01')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+LOAD_CONST('')
+UPDATE_COLUMN(message)
+UPDATE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "INSERT INTO logs (timestamp, message) VALUES ('2024-01-01', 'Started');"
+Test passed: INSERT INTO logs (timestamp, message) VALUES ('2024-01-01', 'Started');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : logs
+ LPAREN      : (
+ IDENTIFIER  : timestamp
+ COMMA       : ,
+ IDENTIFIER  : message
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : '2024-01-01'
+ COMMA       : ,
+ STRING      : 'Started'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- logs
+`-- columns:
+    |-- timestamp
+    `-- message
+`-- values:
+    |-- '2024-01-01'
+    `-- 'Started'
+
+Generated Code:
+LOAD_CONST('2024-01-01')
+LOAD_CONST('Started')
+INSERT_ROW(logs)
+----------------------------------------
+Running test: "INSERT INTO logs (timestamp, message) VALUES ('2024-01-02', 'Shutdown');"
+Test passed: INSERT INTO logs (timestamp, message) VALUES ('2024-01-02', 'Shutdown');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : logs
+ LPAREN      : (
+ IDENTIFIER  : timestamp
+ COMMA       : ,
+ IDENTIFIER  : message
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ STRING      : '2024-01-02'
+ COMMA       : ,
+ STRING      : 'Shutdown'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- logs
+`-- columns:
+    |-- timestamp
+    `-- message
+`-- values:
+    |-- '2024-01-02'
+    `-- 'Shutdown'
+
+Generated Code:
+LOAD_CONST('2024-01-02')
+LOAD_CONST('Shutdown')
+INSERT_ROW(logs)
+----------------------------------------
+Running test: "SELECT * FROM logs;"
+Test passed: SELECT * FROM logs;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ IDENTIFIER  : logs
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- SELECT
+`-- columns:
+    `-- *
+`-- table:
+    |-- logs
+`-- where:
+    `-- None
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(loop_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(end_2)
+EMIT_ROW(['*'])
+JUMP(loop_1)
+LABEL(end_2)
+SCAN_END()
+----------------------------------------
+Running test: "DELETE FROM logs WHERE message = 'Shutdown';"
+Test passed: DELETE FROM logs WHERE message = 'Shutdown';
+
+Tokens:
+ KEYWORD     : DELETE
+ KEYWORD     : FROM
+ IDENTIFIER  : logs
+ KEYWORD     : WHERE
+ IDENTIFIER  : message
+ OPERATOR    : =
+ STRING      : 'Shutdown'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- DELETE
+`-- table:
+    |-- logs
+`-- where:
+    `-- column:
+        |-- message
+    `-- operator:
+        |-- =
+    `-- value:
+        `-- 'Shutdown'
+
+Generated Code:
+OPEN_TABLE(logs)
+SCAN_START()
+LABEL(label_1)
+SCAN_NEXT()
+JUMP_IF_FALSE(label_2)
+LOAD_COLUMN(message)
+LOAD_CONST('Shutdown')
+COMPARE_EQ()
+JUMP_IF_FALSE(label_3)
+DELETE_ROW()
+LABEL(label_3)
+JUMP(label_1)
+LABEL(label_2)
+SCAN_END()
+----------------------------------------
+Running test: "SELECT * FROM SELECT;"
+Test passed: SELECT * FROM SELECT;
+
+Tokens:
+ KEYWORD     : SELECT
+ OPERATOR    : *
+ KEYWORD     : FROM
+ KEYWORD     : SELECT
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected table name after FROM
+----------------------------------------
+Running test: "INSERT INTO DROP (id) VALUES (1);"
+Test passed: INSERT INTO DROP (id) VALUES (1);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : DROP
+ LPAREN      : (
+ IDENTIFIER  : id
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+
+Parse Tree:
+`-- type:
+    |-- INSERT
+`-- table:
+    |-- DROP
+`-- columns:
+    `-- id
+`-- values:
+    `-- 1
+
+Generated Code:
+LOAD_CONST(1)
+INSERT_ROW(DROP)
+----------------------------------------
+Running test: "CREATE TABLE IF EXISTS users (id INT);"
+Test passed: CREATE TABLE IF EXISTS users (id INT);
+
+Tokens:
+ KEYWORD     : CREATE
+ KEYWORD     : TABLE
+ IDENTIFIER  : IF
+ IDENTIFIER  : EXISTS
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ IDENTIFIER  : INT
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected LPAREN but got IDENTIFIER EXISTS
+----------------------------------------
+Running test: "SELECT * FROM users#;"
+Test passed: SELECT * FROM users#;
+Tokenization error: Unexpected character: # at position 19
+----------------------------------------
+Running test: "SELECT ! FROM users;"
+Test passed: SELECT ! FROM users;
+Tokenization error: Unexpected character: ! at position 7
+----------------------------------------
+Running test: "INSERT INTO users (id) VALUES (NULL);"
+Test passed: INSERT INTO users (id) VALUES (NULL);
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ RPAREN      : )
+ KEYWORD     : VALUES
+ LPAREN      : (
+ IDENTIFIER  : NULL
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected value in INSERT
+----------------------------------------
+Running test: "SELECT id FROM users WHERE age === 30;"
+Test passed: SELECT id FROM users WHERE age === 30;
+
+Tokens:
+ KEYWORD     : SELECT
+ IDENTIFIER  : id
+ KEYWORD     : FROM
+ IDENTIFIER  : users
+ KEYWORD     : WHERE
+ IDENTIFIER  : age
+ OPERATOR    : =
+ OPERATOR    : =
+ OPERATOR    : =
+ NUMBER      : 30
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected STRING or NUMBER in WHERE clause
+----------------------------------------
+Running test: "INSERT INTO users (id, name VALUES (1, 'Bob');"
+Test passed: INSERT INTO users (id, name VALUES (1, 'Bob');
+
+Tokens:
+ KEYWORD     : INSERT
+ KEYWORD     : INTO
+ IDENTIFIER  : users
+ LPAREN      : (
+ IDENTIFIER  : id
+ COMMA       : ,
+ IDENTIFIER  : name
+ KEYWORD     : VALUES
+ LPAREN      : (
+ NUMBER      : 1
+ COMMA       : ,
+ STRING      : 'Bob'
+ RPAREN      : )
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected RPAREN but got KEYWORD VALUES
+----------------------------------------
+Running test: "UPDATE users SET age WHERE name = 'Bob';"
+Test passed: UPDATE users SET age WHERE name = 'Bob';
+
+Tokens:
+ KEYWORD     : UPDATE
+ IDENTIFIER  : users
+ KEYWORD     : SET
+ IDENTIFIER  : age
+ KEYWORD     : WHERE
+ IDENTIFIER  : name
+ OPERATOR    : =
+ STRING      : 'Bob'
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Expected OPERATOR = but got KEYWORD WHERE
+----------------------------------------
+Running test: "DROP TABLE;"
+Test passed: DROP TABLE;
+
+Tokens:
+ IDENTIFIER  : DROP
+ KEYWORD     : TABLE
+ SEMICOLON   : ;
+ EOF         : None
+
+Tokenization successful!
+Syntax error: Unknown statement: DROP
+----------------------------------------
+All tests completed.
+Press Enter to exit...

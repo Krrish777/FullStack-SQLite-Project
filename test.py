@@ -1,11 +1,14 @@
-from compiler.code_generator import generate
-from utils.pretty_printer import pretty_print_plan
+from core.virtual_machine import VirtualMachine, Opcode
 
-ast = {
-    "type": "DROP",
-    "table": "users"
-}
+class VirtualMachineTest(VirtualMachine):
+    def op_load_const(self, value):
+        print(f"Loaded: {value}")
+        self.registers.append(value)
 
-plan = generate(ast)
-pretty_print_plan(plan)
+plan = [
+    (Opcode.LOAD_CONST, 42),
+    (Opcode.LOAD_CONST, 7)
+]
+vm = VirtualMachineTest(plan)
+vm.run()
 

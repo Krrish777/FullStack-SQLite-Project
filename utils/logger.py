@@ -15,6 +15,7 @@ def get_logger(name):
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
+    logger.encoding = 'utf-8'
 
     if not logger.handlers:
         fh = logging.FileHandler("sqlite_clone.log")

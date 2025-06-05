@@ -3,7 +3,7 @@ from compiler.code_generator.opcode import Opcode
 
 class DropCodeGenerator(BaseCodeGenerator):
     def generate(self):
-        table = self.ast["table_name"]
+        table = self.ast["table"]
         
         return [
             (Opcode.DROP_TABLE, table)

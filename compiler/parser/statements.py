@@ -253,5 +253,5 @@ def parse_drop_statement(parser):
     logger.info(f"Parsed DROP TABLE {table_name}")
     return {
         "type": "DROP",
-        "table_name": table_name
+        "table": table_name
     }

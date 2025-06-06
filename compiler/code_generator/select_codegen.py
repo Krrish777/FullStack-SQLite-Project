@@ -1,8 +1,12 @@
 from compiler.code_generator.base_codegen import BaseCodeGenerator
 from compiler.code_generator.opcode import Opcode
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 class SelectCodeGenerator(BaseCodeGenerator):
     def generate(self):
+        logger.info("Generating SELECT code")
         table = self.ast["table"]
         columns = self.ast["columns"]
         where = self.ast.get("where", None)
@@ -37,7 +41,7 @@ class SelectCodeGenerator(BaseCodeGenerator):
             (Opcode.LABEL, end_label),
             (Opcode.SCAN_END,)
         ]
-
+        logger.debug(f"Generated SELECT code: {code}")
         return code
 
     def _get_comparison_opcode(self, operator):

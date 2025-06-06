@@ -1,8 +1,12 @@
 from compiler.code_generator.base_codegen import BaseCodeGenerator
 from compiler.code_generator.opcode import Opcode
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 class UpdateCodeGenerator(BaseCodeGenerator):
     def generate(self):
+        logger.info("Generating UPDATE code")
         table = self.ast["table"]
         set = self.ast["set"]
         where = self.ast.get("where", None)
@@ -39,7 +43,7 @@ class UpdateCodeGenerator(BaseCodeGenerator):
             (Opcode.LABEL, end_label),
             (Opcode.SCAN_END,)
         ]
-        
+        logger.debug(f"Generated UPDATE code: {code}")
         return code
 
     def _get_comparison_opcode(self, operator):

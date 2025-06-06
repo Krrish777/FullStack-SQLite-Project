@@ -5,6 +5,10 @@ from compiler.code_generator.update_codegen import UpdateCodeGenerator
 from compiler.code_generator.delete_codegen import DeleteCodeGenerator
 from compiler.code_generator.drop_codegen import DropCodeGenerator
 
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
+
 def generate(ast):
     stmt_type = ast["type"].upper()
     
@@ -21,4 +25,5 @@ def generate(ast):
     elif stmt_type == "DROP":
         return DropCodeGenerator(ast).generate()
     else:
+        logger.error(f"Unsupported statement type: {stmt_type}")
         raise NotImplementedError(f"Code generation for {stmt_type} statements is not implemented yet.")

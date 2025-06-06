@@ -1,8 +1,12 @@
 from compiler.code_generator.base_codegen import BaseCodeGenerator
 from compiler.code_generator.opcode import Opcode
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 class DeleteCodeGenerator(BaseCodeGenerator):
     def generate(self):
+        logger.info("Generating DELETE code")
         table = self.ast["table"]
         where = self.ast.get("where", None)
         
@@ -36,7 +40,7 @@ class DeleteCodeGenerator(BaseCodeGenerator):
             (Opcode.LABEL, end_label),
             (Opcode.SCAN_END,)
         ]
-
+        logger.debug(f"Generated DELETE code: {code}")
         return code
 
     def _get_comparison_opcode(self, operator):

@@ -83,8 +83,13 @@ class VirtualMachine:
         self.rows = []
         
         page = self.current_table.load_root_page()
+        
         for key, value in page.cells:
-            row = decode_row(value)
+            try:
+                row = decode_row(value)
+            except Exception as e:
+                logger.warning(f"Skipping corrupt or empty row: {e}")
+                continue
             row["rowid"] = key
             self.rows.append(row)
             
@@ -115,8 +120,8 @@ class VirtualMachine:
         logger.debug(f"LOAD_COLUMN: {column_name} = {value}")
 
     def op_compare_eq(self):
-        right = self.registers.pop()
         left = self.registers.pop()
+        right = self.registers.pop()
         result = left == right
         self.registers.append(result)
         logger.debug(f"COMPARE_EQ: {left} == {right} -> {result}")
@@ -194,11 +199,7 @@ class VirtualMachine:
         max_id = max([key for key,_ in existing_page.cells], default=0)
         new_row_id = max_id + 1
         
-        # Encode values as a single blob (simple concatenation)
-        # For now, just store the first column as a UTF-8 string
-        encoded = values[0].encode('utf-8') if isinstance(values[0], str) else bytes(values[0])
-        
-        page.add_leaf_cell(new_row_id, encoded)
+        existing_page.add_leaf_cell(new_row_id, encoded)
         self.current_table.save_root_page(existing_page)
         
         logger.info(f"INSERT_ROW: Inserted row with ID {new_row_id} into table '{table}'")

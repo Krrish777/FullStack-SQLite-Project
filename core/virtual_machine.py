@@ -1,5 +1,7 @@
 from compiler.code_generator.opcode import Opcode
+from backend.table import Table
 from utils.logger import get_logger
+from backend.row_codec import encode_row, decode_row
 
 logger = get_logger(__name__)
 
@@ -67,7 +69,7 @@ class VirtualMachine:
     def op_scan_end(self):
         """
         Marks end of table scan. No-op in memory model.
-    """
+        """
         logger.debug("SCAN_END: Table scan complete.")
 
 
@@ -76,21 +78,18 @@ class VirtualMachine:
         logger.debug(f"LOAD_CONST: Pushed {value}")
 
     def op_open_table(self, table_name):
-        self.current_table = table_name
-        self.row_cursor = -1
-        dummy_rows = {
-            "users": [
-                {"id": 1, "name": "Alice", "age": 30},
-                {"id": 2, "name": "Bob", "age": 25},
-                {"id": 3, "name": "Charlie", "age": 35}
-            ],
-            "orders": [
-                {"id": 101, "user_id": 1, "amount": 250.0},
-                {"id": 102, "user_id": 2, "amount": 150.0}
-            ]
-        }
-        self.rows = dummy_rows.get(table_name, [])
-        logger.debug(f"OPEN_TABLE: Loaded '{table_name}' with {len(self.rows)} rows.")
+        logger.debug(f"OPEN_TABLE: Opening table '{table_name}'")
+        self.current_table = Table(table_name)
+        self.rows = []
+        
+        page = self.current_table.load_root_page()
+        for key, value in page.cells:
+            row = decode_row(value)
+            row["rowid"] = key
+            self.rows.append(row)
+            
+        logger.info(f"OPEN_TABLE: Loaded {len(self.rows)} rows from table '{table_name}'")
+        self.row_cursor = -1       
 
     def op_scan_start(self):
         self.row_cursor = -1
@@ -166,29 +165,45 @@ class VirtualMachine:
         logger.info(f"EMIT_ROW: {result}")
 
     def op_insert_row(self, table):
-        self.current_table = table
-        logger.debug(f"INSERT_ROW: Preparing to insert into table '{self.current_table}'")
+        logger.debug(f"INSERT_ROW: Inserting into table '{table}'")
+        self.current_table = Table(table)
         
-        table_schemas = {
+        table_schema = {
             "users": ["name", "age"],
             "orders": ["id", "amount", "date"]
         }
         
-        
-        columns = table_schemas.get(self.current_table)
+        columns = table_schema.get(table)
         if not columns:
-            logger.error("INSERT_ROW with no open table.")
-            raise RuntimeError(f"Unknown table schema for {self.current_table}")
+            raise RuntimeError(f"Table '{table}' not found in schema.")
+        
+        logger.debug(f"Register stack: {self.registers} (expecting {len(columns)} values)")
         
         if len(self.registers) < len(columns):
-            raise RuntimeError("Not enough values in registers for insert.")
+            raise RuntimeError("Not enough values in registers to insert row.")
         
-        values = [self.registers.pop() for _ in range(len(columns))]
-        values.reverse()
+        # Extract values from stack in reverse order
+        values = [self.registers.pop() for _ in columns]
+        values.reverse() # to match column order
+        
         row = dict(zip(columns, values))
-        self.rows.append(row)
+        encoded = encode_row(row)
         
-        logger.info(f"INSERT_ROW: Inserted into {self.current_table}: {row}")
+        # Determine a new row ID
+        existing_page = self.current_table.load_root_page()
+        max_id = max([key for key,_ in existing_page.cells], default=0)
+        new_row_id = max_id + 1
+        
+        # Encode values as a single blob (simple concatenation)
+        # For now, just store the first column as a UTF-8 string
+        encoded = values[0].encode('utf-8') if isinstance(values[0], str) else bytes(values[0])
+        
+        page.add_leaf_cell(new_row_id, encoded)
+        self.current_table.save_root_page(existing_page)
+        
+        logger.info(f"INSERT_ROW: Inserted row with ID {new_row_id} into table '{table}'")
+        row["rowid"] = new_row_id
+        self.rows.append(row)
 
     def op_update_column(self, column_name):
         if self.current_row is None:

@@ -68,10 +68,9 @@ class PageHeader:
     def from_bytes(data: bytes) -> 'PageHeader':
         """
         This static method creates a PageHeader instance from a byte representation.
-        This method expects the data to be exactly 11 bytes long, and it unpacks the fields in the same order they were packed in the to_bytes method.
         """
-        if len(data) != 11:
-            raise ValueError("Data must be exactly 11 bytes long")
+        if len(data) < 11:
+            raise ValueError(f"Data must be at least 11 bytes long, got {len(data)} bytes")
         return PageHeader(
             page_type=data[0],
             num_keys=int.from_bytes(data[1:3], 'big'),
@@ -132,7 +131,10 @@ class Pager:
         
     def read_page(self, page_number: int) -> bytes:
         self.file.seek((page_number -1) * PAGE_SIZE) # Seek to the start of the page
-        return self.file.read(PAGE_SIZE)
+        data = self.file.read(PAGE_SIZE)
+        if len(data) < PAGE_SIZE:
+            data += b'\x00' * (PAGE_SIZE - len(data))  # Pad with zeros if necessary
+        return data
     
     def write_page(self, page_number: int, data: bytes):
         if len(data) > PAGE_SIZE:

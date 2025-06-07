@@ -16,3 +16,6 @@ sqlite_clone.log
 
 test.db
 test.py
+users.db
+users.tbl
+table.py

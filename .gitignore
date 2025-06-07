@@ -13,3 +13,6 @@ venv/
 .vscode/
 
 sqlite_clone.log
+
+test.db
+test.py

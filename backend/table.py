@@ -28,21 +28,24 @@ class Table:
             new_root.children = [self.root_page_num, right_page_number]
             new_root_page_num = self.pager.allocate_page()
             self.pager.write_page(new_root_page_num, new_root.to_bytes())
+            logger.info(f"About to write new root page number: {new_root_page_num}")
             self.root_page_num = new_root_page_num
             self.pager.write_root_page_number(new_root_page_num)
             logger.info(f"Root page split, new root page created: {new_root_page_num}")
 
     def _insert_recursive(self, page_number: int, key, value):
         page = self.load_page(page_number)
-        logger.debug(f"Inserting key={key}, value={value} into page {page_number}")
+        logger.info(f"_insert_recursive: page_number={page_number}, is_leaf={page.is_leaf}, num_cells={len(page.cells)} BEFORE")
         if page.is_leaf:
             if not page.is_full(key, value):
                 page.add_leaf_cell(key, value)
+                logger.info(f"_insert_recursive: page_number={page_number}, is_leaf={page.is_leaf}, num_cells={len(page.cells)} AFTER add_leaf_cell")
                 self.save_page(page_number, page)
                 return None
             else:
                 logger.debug(f"Leaf page {page_number} is full, splitting")
                 page.add_leaf_cell(key, value)
+                logger.info(f"_insert_recursive: page_number={page_number}, is_leaf={page.is_leaf}, num_cells={len(page.cells)} AFTER add_leaf_cell (split)")
                 median_key, right_page_number = page.split_leaf_page(self.pager)
                 self.save_page(page_number, page)
                 return median_key, right_page_number
@@ -99,6 +102,7 @@ class Table:
 
     def scan_page(self, page_number: int):
         page = self.load_page(page_number)
+        logger.info(f"SCAN_PAGE: page_number={page_number}, is_leaf={page.is_leaf}, num_cells={len(page.cells)}, children={getattr(page, 'children', None)}")
         if page.is_leaf:
             for key, value in page.cells:
                 yield (key, value)

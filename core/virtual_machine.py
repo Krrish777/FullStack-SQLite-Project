@@ -32,18 +32,23 @@ class VirtualMachine:
     def run(self):
         self.instruction_pointer = 0
         self._jumped = False
-        while self.instruction_pointer < len(self.code):
-            instr = self.code[self.instruction_pointer]
-            op = instr[0]
-            args = instr[1:]
-            method = getattr(self, f"op_{op.name.lower()}", None)
-            if method:
-                logger.debug(f"IP={self.instruction_pointer}: Executing {op.name} {args}")
-                method(*args)
-                if hasattr(self, '_jumped') and self._jumped:
-                    self._jumped = False
-                    continue
-            self.instruction_pointer += 1
+        try:
+            while self.instruction_pointer < len(self.code):
+                instr = self.code[self.instruction_pointer]
+                op = instr[0]
+                args = instr[1:]
+                method = getattr(self, f"op_{op.name.lower()}", None)
+                if method:
+                    logger.debug(f"IP={self.instruction_pointer}: Executing {op.name} {args}")
+                    method(*args)
+                    if hasattr(self, '_jumped') and self._jumped:
+                        self._jumped = False
+                        continue
+                self.instruction_pointer += 1
+        finally:
+            if self.current_table:
+                self.current_table.close()
+                self.current_table = None
 
     def op_label(self, label_name):
         """
@@ -84,6 +89,8 @@ class VirtualMachine:
 
     def op_open_table(self, table_name):
         logger.debug(f"OPEN_TABLE: Opening table '{table_name}'")
+        if self.current_table:
+            self.current_table.close()
         self.current_table = Table(table_name)
         self.rows = []
         self.row_metadata = {}
@@ -191,7 +198,9 @@ class VirtualMachine:
 
     def op_insert_row(self, table):
         logger.debug(f"INSERT_ROW: Inserting into table '{table}'")
-        self.current_table = Table(table)
+        # Use already-open self.current_table
+        if not self.current_table or self.current_table.table_name != table:
+            raise Exception(f"Table '{table}' is not open. Call OPEN_TABLE first.")
         # Get schema from catalog
         schema_info = self.catalog.get_schema(table)
         if not schema_info:
@@ -212,12 +221,9 @@ class VirtualMachine:
         max_id = max([key for key,_ in existing_page.cells], default=0)
         new_row_id = max_id + 1
         self.current_table.insert(new_row_id, encoded)
-        self.current_table.save_root_page(existing_page)
         logger.info(f"INSERT_ROW: Inserted row with ID {new_row_id} into table '{table}'")
         row["rowid"] = new_row_id
         self.rows.append(row)
-        self.current_table.close()
-        self.current_table = None
 
     def op_update_column(self, column_name):
         if self.current_row is None:

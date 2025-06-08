@@ -10,6 +10,7 @@ vm.run()
 
 # 2. Insert some rows
 insert_plan = [
+    (Opcode.OPEN_TABLE, "users"),
     (Opcode.LOAD_CONST, "Alice"),
     (Opcode.LOAD_CONST, 35),
     (Opcode.INSERT_ROW, "users"),

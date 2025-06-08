@@ -14,6 +14,7 @@ def has_enough_space(path, required_bytes):
 
 # Insert dummy rows
 insert_plan = [
+    (Opcode.OPEN_TABLE, "users"),
     (Opcode.LOAD_CONST, "Alice"),
     (Opcode.LOAD_CONST, 35),
     (Opcode.INSERT_ROW, "users"),
@@ -113,7 +114,7 @@ for row in vm.output:
     print(row)
 
 # 6. Bulk insert to force B-tree splits (multi-page validation)
-bulk_insert_plan = []
+bulk_insert_plan = [(Opcode.OPEN_TABLE, "users")]
 for i in range(1, 50):  # Insert 49 rows (adjust as needed for your page size)
     bulk_insert_plan.extend([
         (Opcode.LOAD_CONST, f"User{i}"),
@@ -124,15 +125,15 @@ vm_bulk = VirtualMachine(bulk_insert_plan)
 vm_bulk.run()
 
 # 6b. Insert even more rows to force more splits
-bulk_insert_plan = []
+bulk_insert_plan2 = [(Opcode.OPEN_TABLE, "users")]
 for i in range(1, 201):  # Insert 200 rows
-    bulk_insert_plan.extend([
+    bulk_insert_plan2.extend([
         (Opcode.LOAD_CONST, f"User{i}"),
         (Opcode.LOAD_CONST, 20 + (i % 30)),
         (Opcode.INSERT_ROW, "users"),
     ])
-vm_bulk = VirtualMachine(bulk_insert_plan)
-vm_bulk.run()
+vm_bulk2 = VirtualMachine(bulk_insert_plan2)
+vm_bulk2.run()
 
 # Log file size and disk usage
 size = os.path.getsize("users.tbl")

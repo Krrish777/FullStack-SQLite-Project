@@ -111,6 +111,7 @@ class BTreePage:
                 # next_value is expected to be a child_page_number for internal nodes
                 content += next_key.to_bytes(2, 'big') + next_value.to_bytes(4, 'big')
         total_size = len(self.header.to_bytes()) + len(content)
+        logger.info(f"is_full: is_leaf={self.is_leaf}, num_cells={len(self.cells)}, total_size={total_size}")
         return total_size > PAGE_SIZE
     
     def add_leaf_cell(self, key: int, value: bytes):
@@ -191,6 +192,7 @@ class BTreePage:
         return page_bytes
 
     def split_leaf_page(self, pager):
+        logger.info(f"split_leaf_page called: num_cells={len(self.cells)}")
         mid = len(self.cells) // 2
         right_cells = self.cells[mid:]
         left_cells = self.cells[:mid]
@@ -276,13 +278,15 @@ class Pager:
         if len(data) < 4:
             logger.warning(f"File too small for root page number, defaulting to 1")
             return 1
-        return int.from_bytes(data, 'big')
+        root_page = int.from_bytes(data, 'big')
+        logger.info(f"READ_ROOT_PAGE_NUMBER: {root_page}")
+        return root_page
 
     def write_root_page_number(self, page_number: int):
         self.file.seek(0)
         self.file.write(page_number.to_bytes(4, 'big'))
         self.file.flush()
-        logger.info(f"Wrote root page number: {page_number} to file: {self.filename}")
+        logger.info(f"WRITE_ROOT_PAGE_NUMBER: {page_number}")
 
     def read_page(self, page_number: int) -> bytes:
         if page_number < 1:

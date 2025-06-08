@@ -2,6 +2,7 @@ from compiler.code_generator.opcode import Opcode
 from backend.table import Table
 from utils.logger import get_logger
 from backend.row_codec import encode_row, decode_row
+from meta.catalog import Catalog
 
 logger = get_logger(__name__)
 
@@ -18,27 +19,31 @@ class VirtualMachine:
         self.registers = []
         self.output = []
         self.current_table = None
+        self.catalog = Catalog()  # <-- Initialize Catalog
 
         self._index_labels()
 
     def _index_labels(self):
+        self.labels = {}
         for idx, instruction in enumerate(self.code):
-            if instruction[0] == Opcode.LABEL:
+            if instruction[0].name == "LABEL":
                 self.labels[instruction[1]] = idx
 
     def run(self):
+        self.instruction_pointer = 0
+        self._jumped = False
         while self.instruction_pointer < len(self.code):
             instr = self.code[self.instruction_pointer]
-            opcode, *args = instr
-
-            logger.debug(f"IP={self.instruction_pointer}: Executing {opcode.name} {args}")
-            handler = getattr(self, f"op_{opcode.name.lower()}", None)
-            if not handler:
-                raise RuntimeError(f"No handler for opcode: {opcode.name}")
-            handler(*args)
-
-            if opcode not in {Opcode.JUMP, Opcode.JUMP_IF_FALSE}:
-                self.instruction_pointer += 1
+            op = instr[0]
+            args = instr[1:]
+            method = getattr(self, f"op_{op.name.lower()}", None)
+            if method:
+                logger.debug(f"IP={self.instruction_pointer}: Executing {op.name} {args}")
+                method(*args)
+                if hasattr(self, '_jumped') and self._jumped:
+                    self._jumped = False
+                    continue
+            self.instruction_pointer += 1
 
     def op_label(self, label_name):
         """
@@ -54,10 +59,10 @@ class VirtualMachine:
         condition = self.registers.pop()
         if not condition:
             self.instruction_pointer = self.labels[label]
-            logger.debug(f"JUMP_IF_FALSE: Condition False -> Jump to {label}")
+            self._jumped = True
+            logger.debug(f"JUMP_IF_FALSE: Jumping to {label}")
         else:
-            self.instruction_pointer += 1
-            logger.debug(f"JUMP_IF_FALSE: Condition True -> Continue")
+            logger.debug(f"JUMP_IF_FALSE: Condition true, not jumping.")
     
     def op_jump(self, label):
         """
@@ -81,10 +86,8 @@ class VirtualMachine:
         logger.debug(f"OPEN_TABLE: Opening table '{table_name}'")
         self.current_table = Table(table_name)
         self.rows = []
-        
-        page = self.current_table.load_root_page()
-        
-        for key, value in page.cells:
+        self.row_metadata = {}
+        for key, value in self.current_table.scan_page(self.current_table.root_page_num):
             try:
                 row = decode_row(value)
             except Exception as e:
@@ -92,9 +95,10 @@ class VirtualMachine:
                 continue
             row["rowid"] = key
             self.rows.append(row)
-            
+            self.row_metadata[key] = (self.current_table.root_page_num, None)
         logger.info(f"OPEN_TABLE: Loaded {len(self.rows)} rows from table '{table_name}'")
-        self.row_cursor = -1       
+        self.row_cursor = -1
+        logger.debug(f"Rows loaded: {self.rows}")
 
     def op_scan_start(self):
         self.row_cursor = -1
@@ -105,11 +109,11 @@ class VirtualMachine:
         if self.row_cursor < len(self.rows):
             self.current_row = self.rows[self.row_cursor]
             self.registers.append(True)
-            logger.debug(f"SCAN_NEXT: Row {self.row_cursor} = {self.current_row}")
+            logger.debug(f"SCAN_NEXT: Cursor at {self.row_cursor}, row: {self.current_row}")
         else:
             self.current_row = None
             self.registers.append(False)
-            logger.debug("SCAN_NEXT: No more rows.")
+            logger.debug(f"SCAN_NEXT: Cursor at {self.row_cursor}, end of rows.")
 
     def op_load_column(self, column_name):
         if self.current_row is None:
@@ -179,8 +183,8 @@ class VirtualMachine:
 
     def op_emit_row(self, columns):
         if not self.current_row:
-            logger.error("EMIT_ROW with no current row.")
-            raise RuntimeError("No current row to emit.")
+            logger.debug("EMIT_ROW: No current row to emit.")
+            return
         result = {col: self.current_row.get(col) for col in columns}
         self.output.append(result)
         logger.info(f"EMIT_ROW: {result}")
@@ -188,42 +192,32 @@ class VirtualMachine:
     def op_insert_row(self, table):
         logger.debug(f"INSERT_ROW: Inserting into table '{table}'")
         self.current_table = Table(table)
-        
-        table_schema = {
-            "users": ["name", "age"],
-            "orders": ["id", "amount", "date"]
-        }
-        
-        columns = table_schema.get(table)
-        if not columns:
-            raise RuntimeError(f"Table '{table}' not found in schema.")
-        
+        # Get schema from catalog
+        schema_info = self.catalog.get_schema(table)
+        if not schema_info:
+            raise Exception(f"Table '{table}' does not exist in catalog.")
+        columns = [col[0] for col in schema_info["columns"]]
         logger.debug(f"Register stack: {self.registers} (expecting {len(columns)} values)")
-        
         if len(self.registers) < len(columns):
-            raise RuntimeError("Not enough values in registers to insert row.")
-        
+            raise Exception(f"Not enough values on stack for insert into '{table}'")
         # Extract values from stack in reverse order
         values = []
         for col in reversed(columns):
-            val = self.registers.pop()
-            logger.debug(f"Popped value for column '{col}': {val}")
-            values.insert(0, val)
-        
-        row = dict(zip(columns, values))
+            values.append(self.registers.pop())
+            logger.debug(f"Popped value for column '{col}': {values[-1]}")
+        row = dict(zip(columns, values[::-1]))
         encoded = encode_row(row)
-        
         # Determine a new row ID
         existing_page = self.current_table.load_root_page()
         max_id = max([key for key,_ in existing_page.cells], default=0)
         new_row_id = max_id + 1
-        
-        existing_page.add_leaf_cell(new_row_id, encoded)
+        self.current_table.insert(new_row_id, encoded)
         self.current_table.save_root_page(existing_page)
-        
         logger.info(f"INSERT_ROW: Inserted row with ID {new_row_id} into table '{table}'")
         row["rowid"] = new_row_id
         self.rows.append(row)
+        self.current_table.close()
+        self.current_table = None
 
     def op_update_column(self, column_name):
         if self.current_row is None:
@@ -235,19 +229,38 @@ class VirtualMachine:
     def op_update_row(self):
         if self.current_row is None:
             raise RuntimeError("No current row to commit update.")
+        rowid = self.current_row["rowid"]
+        page_num, _ = self.row_metadata[rowid]
+        page = self.current_table.load_page(page_num)
+        new_value = encode_row(self.current_row)
+        page.update_leaf_cell(rowid, new_value)
+        self.current_table.save_page(page_num, page)
         self.rows[self.row_cursor] = self.current_row.copy()
-        logger.info(f"UPDATE_ROW: Row {self.row_cursor} updated: {self.current_row}")
+        logger.info(f"UPDATE_ROW: Row {self.row_cursor} updated and persisted: {self.current_row}")
+
 
     def op_delete_row(self):
         if self.current_row is None or self.row_cursor < 0:
             raise RuntimeError("No current row to delete.")
-        deleted = self.rows.pop(self.row_cursor)
-        logger.info(f"DELETE_ROW: Deleted row {self.row_cursor}: {deleted}")
+        rowid = self.current_row["rowid"]
+        page_num, _ = self.row_metadata[rowid]
+        page = self.current_table.load_page(page_num)
+        page.delete_leaf_cell(rowid)
+        self.current_table.save_page(page_num, page)
+        del self.row_metadata[rowid]
+        deleted_row = self.rows.pop(self.row_cursor)
+        logger.info(f"DELETE_ROW: Deleted row {rowid}: {deleted_row}")
         self.row_cursor -= 1
         self.current_row = None
 
     def op_create_table(self, table_name, columns):
+        # columns: list of (name, type) tuples
         logger.info(f"CREATE_TABLE: Defined table '{table_name}' with columns: {columns}")
+        # Allocate a new table file and root page
+        tbl = Table(table_name)
+        root_page = tbl.root_page_num
+        tbl.close()
+        self.catalog.create_table(table_name, columns, root_page)
 
     def op_drop_table(self, table_name):
         logger.info(f"DROP_TABLE: Dropped table '{table_name}'")

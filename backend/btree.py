@@ -2,6 +2,8 @@ from typing import List, Optional, Any
 from utils.logger import get_logger
 logger = get_logger(__name__)
 
+MAX_KEYS = 32  # Simulate a page size limit (adjust as needed)
+
 class BTreeNode:
     def __init__(self, is_leaf: bool):
         self.is_leaf: bool = is_leaf
@@ -9,22 +11,18 @@ class BTreeNode:
         self.values: List[Any] = []            # Only for leaf nodes
         self.children: List['BTreeNode'] = []  # Only for internal nodes
 
-    def is_full(self, max_keys: int) -> bool:
-        full = len(self.keys) >= max_keys
-        logger.debug(f"Node {self} is_full({max_keys}) -> {full}")
+    def is_full(self) -> bool:
+        full = len(self.keys) >= MAX_KEYS
+        logger.debug(f"Node {self} is_full({MAX_KEYS}) -> {full}")
         return full
 
     def __repr__(self):
         return f"<{'Leaf' if self.is_leaf else 'Internal'}Node keys={self.keys}>"
 
 class BTree:
-    def __init__(self, max_keys: int = 3):
-        if max_keys < 1 or max_keys % 2 == 0:
-            logger.error("max_keys must be an odd integer ≥ 1")
-            raise ValueError("max_keys must be an odd integer ≥ 1")
-        self.max_keys = max_keys
+    def __init__(self):
         self.root = BTreeNode(is_leaf=True)
-        logger.info(f"BTree initialized with max_keys={max_keys}")
+        logger.info(f"BTree initialized with MAX_KEYS={MAX_KEYS}")
 
     def search(self, key: int) -> Optional[Any]:
         logger.debug(f"Searching for key={key}")
@@ -48,7 +46,7 @@ class BTree:
     def insert(self, key: int, value: Any):
         logger.info(f"Inserting key={key}, value={value}")
         root = self.root
-        if root.is_full(self.max_keys):
+        if root.is_full():
             logger.debug("Root is full, splitting root")
             new_root = BTreeNode(is_leaf=False)
             new_root.children.append(root)
@@ -73,7 +71,7 @@ class BTree:
             i = 0
             while i < len(node.keys) and key > node.keys[i]:
                 i += 1
-            if node.children[i].is_full(self.max_keys):
+            if node.children[i].is_full():
                 logger.debug(f"Child {i} of node {node} is full, splitting child")
                 self._split_child(node, i)
                 if key > node.keys[i]:
@@ -139,13 +137,13 @@ class BTree:
 # ------------------ Test ------------------
 
 if __name__ == "__main__":
-    bt = BTree(max_keys=3)
-    for k in [5, 10, 15, 20, 25]:
+    bt = BTree()
+    for k in range(1, 100):  # Insert more keys to test splits
         bt.insert(k, f"row{k}")
 
     print("Search:")
     print(bt.search(10))  # row10
-    print(bt.search(25))  # row25
+    print(bt.search(99))  # row99
 
     print("\nTree structure:")
     bt.print_tree()

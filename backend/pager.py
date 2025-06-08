@@ -37,12 +37,13 @@ Interpreted as:
 key=20,value="Bob"
 """
 import os
-import logging
+import shutil
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
 PAGE_SIZE = 4096  # Size of a B-Tree page in bytes
+ROOT_PAGE_HEADER_SIZE = 4  # 4 bytes for root page number at file start
 
 class PageHeader:
     def __init__(self, page_type: int, num_keys: int = 0, free_start:int = 0, right_sibling: int=0):
@@ -53,15 +54,6 @@ class PageHeader:
         logger.debug(f"Initialized PageHeader: page_type={page_type}, num_keys={num_keys}, free_start={free_start}, right_sibling={right_sibling}")
         
     def to_bytes(self) -> bytes:
-        """
-        This method converts the PageHeader instance to a byte representation.
-        The byte order is little-endian, and the fields are packed as follows:
-        - page_type: 1 byte
-        - num_keys: 2 bytes
-        - free_start: 4 bytes
-        - right_sibling: 4 bytes
-        The total size of the byte representation is 11 bytes.
-        """
         header_bytes = (
                 self.page_type.to_bytes(1, 'big') +
                 self.num_keys.to_bytes(2, 'big') +
@@ -73,9 +65,6 @@ class PageHeader:
         
     @staticmethod
     def from_bytes(data: bytes) -> 'PageHeader':
-        """
-        This static method creates a PageHeader instance from a byte representation.
-        """
         if len(data) < 11:
             logger.error(f"Data must be at least 11 bytes long, got {len(data)} bytes")
             raise ValueError(f"Data must be at least 11 bytes long, got {len(data)} bytes")
@@ -90,86 +79,251 @@ class PageHeader:
             
 class BTreePage:
     def __init__(self, is_leaf: bool):
+        self.is_leaf = is_leaf
         self.header = PageHeader(page_type=0x0D if is_leaf else 0x05)
-        self.cells: list = []  # List of tuples (key, value) for leaf nodes or (key, child_page_number) for internal nodes or page_ptr
+        self.cells: list = []  # List of tuples (key, value) for leaf nodes or (key, child_page_number) for internal nodes
+        self.children: list = [] if not is_leaf else None
         logger.debug(f"Initialized BTreePage: is_leaf={is_leaf}")
 
+    def is_full(self, next_key=None, next_value=None):
+        # Calculate the size if we add another cell
+        if self.is_leaf:
+            content = b"".join(
+                key.to_bytes(2, 'big') +
+                len(value).to_bytes(2, 'big') +
+                value for key, value in self.cells
+            )
+            if next_key is not None and next_value is not None:
+                content += (
+                    next_key.to_bytes(2, 'big') +
+                    len(next_value).to_bytes(2, 'big') +
+                    next_value
+                )
+        else:
+            content = b""
+            # Internal: leftmost child, then (key, child_page_number) for each cell
+            if self.children and len(self.children) > 0:
+                content += self.children[0].to_bytes(4, 'big')
+            for i, (key, child_page_number) in enumerate(self.cells):
+                content += key.to_bytes(2, 'big') + child_page_number.to_bytes(4, 'big')
+            # If next_key/next_value is provided, simulate adding another cell/child
+            if next_key is not None and next_value is not None:
+                # next_value is expected to be a child_page_number for internal nodes
+                content += next_key.to_bytes(2, 'big') + next_value.to_bytes(4, 'big')
+        total_size = len(self.header.to_bytes()) + len(content)
+        return total_size > PAGE_SIZE
+    
     def add_leaf_cell(self, key: int, value: bytes):
-        """
-        Adds a cell to a leaf page.
-        """
-        if self.header.page_type != 0x0D:
-            logger.error("Cannot add leaf cell to non-leaf page")
-            raise ValueError("Cannot add leaf cell to non-leaf page")
-        self.cells.append((key, value))
-        self.header.num_keys += 1
-        logger.debug(f"Added leaf cell: key={key}, value={value}")
+        idx = 0
+        while idx < len(self.cells) and self.cells[idx][0] < key:
+            idx += 1
+        self.cells.insert(idx, (key, value))
+        self.header.num_keys = len(self.cells)
+        
+    def find_child_index(self, key: int) -> int:
+        for i, (k, _) in enumerate(self.cells):
+            if k >= key:
+                return i
+        return len(self.cells)
+    
+    def insert_internal_cell(self, key: int, child_page_number: int):
+        idx = self.find_child_index(key)
+        self.cells.insert(idx, (key, child_page_number))
+        self.header.num_keys = len(self.cells)
+        # Maintain children: insert child_page_number after idx
+        if self.children is not None:
+            self.children.insert(idx + 1, child_page_number)
+        
+    def split_internal_page(self, pager):
+        mid = len(self.cells) // 2
+        right_cells = self.cells[mid + 1:]
+        left_cells = self.cells[:mid]
+        median_key = self.cells[mid][0]
+        
+        right_page = BTreePage(is_leaf=False)
+        right_page.cells = right_cells
+        right_page.header.num_keys = len(right_cells)
+        # Set children for right page
+        if self.children:
+            right_page.children = self.children[mid + 1:]
+        else:
+            right_page.children = []
+        
+        self.cells = left_cells
+        self.header.num_keys = len(left_cells)
+        if self.children:
+            self.children = self.children[:mid + 1]
+        
+        new_right_page_number = pager.allocate_page()
+        pager.write_page(new_right_page_number, right_page.to_bytes())
+        logger.info(f"Split internal page, median_key={median_key}, new_right_page_number={new_right_page_number}")
+        return median_key, new_right_page_number
 
     def add_internal_cell(self, key: int, child_page_number: int):
-        """
-        Adds a cell to an internal page.
-        """
         if self.header.page_type != 0x05:
             logger.error("Cannot add internal cell to leaf page")
             raise ValueError("Cannot add internal cell to leaf page")
         self.cells.append((key, child_page_number))
         self.header.num_keys += 1
+        if self.children is not None:
+            self.children.append(child_page_number)
         logger.debug(f"Added internal cell: key={key}, child_page_number={child_page_number}")
 
     def to_bytes(self) -> bytes:
-        content = b"".join(
-            key.to_bytes(2, 'big') +
-            len(value).to_bytes(2, 'big') +
-            value for key, value in self.cells
-        )
-        self.header.free_start = len(self.header.to_bytes()) + len(content)
+        if self.is_leaf:
+            content = b"".join(
+                key.to_bytes(2, 'big') +
+                len(value).to_bytes(2, 'big') +
+                value for key, value in self.cells
+            )
+        else:
+            content = b""
+            if self.children and len(self.children) > 0:
+                content += self.children[0].to_bytes(4, 'big')
+            for i, (key, child_page_number) in enumerate(self.cells):
+                content += key.to_bytes(2, 'big') + child_page_number.to_bytes(4, 'big')
+        self.header.free_start = 11 + len(content)
         page_bytes = self.header.to_bytes() + content
-        logger.debug(f"Serialized BTreePage to bytes, length={len(page_bytes)}")
+        if len(page_bytes) > PAGE_SIZE:
+            logger.error("Serialized page exceeds PAGE_SIZE")
+            raise ValueError("Serialized page exceeds PAGE_SIZE")
+        logger.debug(f"Serialized BTreePage to bytes: {len(page_bytes)} bytes")
         return page_bytes
 
+    def split_leaf_page(self, pager):
+        mid = len(self.cells) // 2
+        right_cells = self.cells[mid:]
+        left_cells = self.cells[:mid]
+        
+        right_page = BTreePage(is_leaf=True)
+        right_page.cells = right_cells
+        right_page.header.num_keys = len(right_cells)
+        
+        self.cells = left_cells
+        self.header.num_keys = len(left_cells)
+        
+        new_right_page_number = pager.allocate_page()
+        pager.write_page(new_right_page_number, right_page.to_bytes())
+        
+        median_key = right_cells[0][0] 
+        logger.debug(f"Splitting leaf page, median_key={median_key}, new_right_page_number={new_right_page_number}")
+        return median_key, new_right_page_number
+    
     @staticmethod
     def from_bytes(data: bytes) -> 'BTreePage':
+        if all(b == 0 for b in data[:11]):
+            logger.info("from_bytes called with empty page data, returning empty BTreePage")
+            return BTreePage(is_leaf=True)  # Return an empty leaf page if the header is all zeros
         header = PageHeader.from_bytes(data[:11])
-        page = BTreePage(is_leaf=(header.page_type == 0x0D))
+        is_leaf = (header.page_type == 0x0D)
+        page = BTreePage(is_leaf=is_leaf)
         page.header = header
         offset = 11
-        for _ in range(header.num_keys):
-            key = int.from_bytes(data[offset:offset + 2], 'big')
-            value_length = int.from_bytes(data[offset + 2:offset + 4], 'big')
-            value = data[offset + 4:offset + 4 + value_length]
-            page.cells.append((key, value))
-            logger.debug(f"Loaded cell: key={key}, value_length={value_length}, value={value}")
-            offset += 4 + value_length
+        if is_leaf:
+            for _ in range(header.num_keys):
+                key = int.from_bytes(data[offset:offset + 2], 'big')
+                value_length = int.from_bytes(data[offset + 2:offset + 4], 'big')
+                value = data[offset + 4:offset + 4 + value_length]
+                page.cells.append((key, value))
+                offset += 4 + value_length
+        else:
+            page.children = []
+            leftmost_child = int.from_bytes(data[offset:offset + 4], 'big')
+            page.children.append(leftmost_child)
+            offset += 4
+            for _ in range(header.num_keys):
+                key = int.from_bytes(data[offset:offset + 2], 'big')
+                child_page_number = int.from_bytes(data[offset + 2:offset + 6], 'big')
+                page.cells.append((key, child_page_number))
+                page.children.append(child_page_number)
+                offset += 6
         logger.info(f"Loaded page with {len(page.cells)} cells")
-        return page
+        return page  
+    
+    def update_leaf_cell(self, key, new_value):
+        for idx, (k, _) in enumerate(self.cells):
+            if k == key:
+                self.cells[idx] = (key, new_value)
+                logger.debug(f"Updated leaf cell: key={key}, new_value={new_value}")
+                return True
+        raise KeyError(f"Key {key} not found in leaf page")
+    
+    def delete_leaf_cell(self, key):
+        for idx, (k, _) in enumerate(self.cells):
+            if k == key:
+                del self.cells[idx]
+                self.header.num_keys -= 1
+                logger.debug(f"Deleted leaf cell: key={key}")
+                return True
+        raise KeyError(f"Key {key} not found in leaf page")
 
 class Pager:
     def __init__(self, filename: str):
         self.filename = filename
-        self.file = open(filename, 'r+b') if os.path.exists(filename) else open(filename, 'w+b')
+        file_exists = os.path.exists(filename)
+        self.file = open(filename, 'r+b') if file_exists else open(filename, 'w+b')
         logger.info(f"Opened file for Pager: {filename}")
-        
+        if not file_exists:
+            # Write initial root page number = 1
+            self.file.seek(0)
+            self.file.write((1).to_bytes(4, 'big'))
+            self.file.flush()
+            logger.info(f"Initialized new file with root page number 1: {filename}")
+
+    def read_root_page_number(self) -> int:
+        self.file.seek(0)
+        data = self.file.read(4)
+        if len(data) < 4:
+            logger.warning(f"File too small for root page number, defaulting to 1")
+            return 1
+        return int.from_bytes(data, 'big')
+
+    def write_root_page_number(self, page_number: int):
+        self.file.seek(0)
+        self.file.write(page_number.to_bytes(4, 'big'))
+        self.file.flush()
+        logger.info(f"Wrote root page number: {page_number} to file: {self.filename}")
+
     def read_page(self, page_number: int) -> bytes:
-        self.file.seek((page_number -1) * PAGE_SIZE) # Seek to the start of the page
+        if page_number < 1:
+            raise ValueError(f"Invalid page number: {page_number}")
+        offset = ROOT_PAGE_HEADER_SIZE + (page_number - 1) * PAGE_SIZE
+        self.file.seek(offset)
         data = self.file.read(PAGE_SIZE)
         if len(data) < PAGE_SIZE:
-            data += b'\x00' * (PAGE_SIZE - len(data))  # Pad with zeros if necessary
+            # Pad with zeros if page is not fully written yet
             logger.debug(f"Read page {page_number}: padded with zeros to {PAGE_SIZE} bytes")
+            data = data + b'\x00' * (PAGE_SIZE - len(data))
         else:
             logger.debug(f"Read page {page_number}: {len(data)} bytes")
         return data
 
     def write_page(self, page_number: int, data: bytes):
+        import shutil
+        dir_path = os.path.dirname(self.filename) or "."
+        total, used, free = shutil.disk_usage(dir_path)
+        logger.info(f"Before write: {free // (1024*1024)} MB free on {dir_path}")
         if len(data) > PAGE_SIZE:
-            logger.error("Data exceeds page size")
-            raise ValueError("Data exceeds page size")
-        self.file.seek((page_number - 1) * PAGE_SIZE)
+            raise ValueError(f"Page data too large: {len(data)} > {PAGE_SIZE}")
+        offset = ROOT_PAGE_HEADER_SIZE + (page_number - 1) * PAGE_SIZE
+        self.file.seek(offset)
         self.file.write(data.ljust(PAGE_SIZE, b'\x00'))  # Pad with zeros if necessary
         self.file.flush()
         logger.info(f"Wrote page {page_number}: {len(data)} bytes")
 
+    def allocate_page(self):
+        self.file.seek(0, os.SEEK_END)
+        file_size = self.file.tell()
+        # Subtract 4 bytes for root page header
+        if file_size < ROOT_PAGE_HEADER_SIZE:
+            file_size = ROOT_PAGE_HEADER_SIZE
+        num_pages = (file_size - ROOT_PAGE_HEADER_SIZE) // PAGE_SIZE
+        new_page_number = num_pages + 1
+        logger.info(f"Allocating new page: {new_page_number}")
+        return new_page_number
+
     def close(self):
         self.file.flush()
+        os.fsync(self.file.fileno())
         self.file.close()
         logger.info(f"Closed Pager file: {self.filename}")
-

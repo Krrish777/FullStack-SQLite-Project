@@ -120,8 +120,8 @@ class VirtualMachine:
         logger.debug(f"LOAD_COLUMN: {column_name} = {value}")
 
     def op_compare_eq(self):
-        left = self.registers.pop()
         right = self.registers.pop()
+        left = self.registers.pop()
         result = left == right
         self.registers.append(result)
         logger.debug(f"COMPARE_EQ: {left} == {right} -> {result}")
@@ -136,28 +136,44 @@ class VirtualMachine:
     def op_compare_gt(self):
         right = self.registers.pop()
         left = self.registers.pop()
-        result = left > right
+        if (isinstance(left, (int, float)) and isinstance(right, (int, float))) or (isinstance(left, str) and isinstance(right, str)):
+            result = left > right
+        else:
+            logger.error(f"COMPARE_GT: Incompatible types for >: {type(left)} and {type(right)}")
+            raise RuntimeError(f"Cannot compare {left} (type {type(left).__name__}) and {right} (type {type(right).__name__})")
         self.registers.append(result)
         logger.debug(f"COMPARE_GT: {left} > {right} -> {result}")
 
     def op_compare_lt(self):
         right = self.registers.pop()
         left = self.registers.pop()
-        result = left < right
+        if (isinstance(left, (int, float)) and isinstance(right, (int, float))) or (isinstance(left, str) and isinstance(right, str)):
+            result = left < right
+        else:
+            logger.error(f"COMPARE_LT: Incompatible types for <: {type(left)} and {type(right)}")
+            raise RuntimeError(f"Cannot compare {left} (type {type(left).__name__}) and {right} (type {type(right).__name__})")
         self.registers.append(result)
         logger.debug(f"COMPARE_LT: {left} < {right} -> {result}")
 
     def op_compare_gte(self):
         right = self.registers.pop()
         left = self.registers.pop()
-        result = left >= right
+        if (isinstance(left, (int, float)) and isinstance(right, (int, float))) or (isinstance(left, str) and isinstance(right, str)):
+            result = left >= right
+        else:
+            logger.error(f"COMPARE_GTE: Incompatible types for >=: {type(left)} and {type(right)}")
+            raise RuntimeError(f"Cannot compare {left} (type {type(left).__name__}) and {right} (type {type(right).__name__})")
         self.registers.append(result)
         logger.debug(f"COMPARE_GTE: {left} >= {right} -> {result}")
 
     def op_compare_lte(self):
         right = self.registers.pop()
         left = self.registers.pop()
-        result = left <= right
+        if (isinstance(left, (int, float)) and isinstance(right, (int, float))) or (isinstance(left, str) and isinstance(right, str)):
+            result = left <= right
+        else:
+            logger.error(f"COMPARE_LTE: Incompatible types for <=: {type(left)} and {type(right)}")
+            raise RuntimeError(f"Cannot compare {left} (type {type(left).__name__}) and {right} (type {type(right).__name__})")
         self.registers.append(result)
         logger.debug(f"COMPARE_LTE: {left} <= {right} -> {result}")
 
@@ -188,8 +204,11 @@ class VirtualMachine:
             raise RuntimeError("Not enough values in registers to insert row.")
         
         # Extract values from stack in reverse order
-        values = [self.registers.pop() for _ in columns]
-        values.reverse() # to match column order
+        values = []
+        for col in reversed(columns):
+            val = self.registers.pop()
+            logger.debug(f"Popped value for column '{col}': {val}")
+            values.insert(0, val)
         
         row = dict(zip(columns, values))
         encoded = encode_row(row)
@@ -232,3 +251,23 @@ class VirtualMachine:
 
     def op_drop_table(self, table_name):
         logger.info(f"DROP_TABLE: Dropped table '{table_name}'")
+        
+    def op_logical_and(self):
+        left = self.registers.pop()
+        right = self.registers.pop()
+        result = bool(left) and bool(right)
+        self.registers.append(result)
+        logger.debug(f"LOGICAL_AND: {left} AND {right} -> {result}")
+        
+    def op_logical_or(self):
+        left = self.registers.pop()
+        right = self.registers.pop()
+        result = bool(left) or bool(right)
+        self.registers.append(result)
+        logger.debug(f"LOGICAL_OR: {left} OR {right} -> {result}")
+        
+    def op_logical_not(self):
+        operand = self.registers.pop()
+        result = not bool(operand)
+        self.registers.append(result)
+        logger.debug(f"LOGICAL_NOT: NOT {operand} -> {result}")

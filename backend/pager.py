@@ -37,6 +37,10 @@ Interpreted as:
 key=20,value="Bob"
 """
 import os
+import logging
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 PAGE_SIZE = 4096  # Size of a B-Tree page in bytes
 
@@ -46,6 +50,7 @@ class PageHeader:
         self.num_keys = num_keys
         self.free_start = free_start
         self.right_sibling = right_sibling
+        logger.debug(f"Initialized PageHeader: page_type={page_type}, num_keys={num_keys}, free_start={free_start}, right_sibling={right_sibling}")
         
     def to_bytes(self) -> bytes:
         """
@@ -57,12 +62,14 @@ class PageHeader:
         - right_sibling: 4 bytes
         The total size of the byte representation is 11 bytes.
         """
-        return (
-                self.page_type.to_bytes(1, 'big') + # This is a flag to identify the type of page 0x0d(13) for leaf node, 0x05(5) for internal node
-                self.num_keys.to_bytes(2, 'big') + # Number of keys (entries) stored in the page
-                self.free_start.to_bytes(4, 'big') + # Offset (byte position) where the free space starts for appending new entries.
-                self.right_sibling.to_bytes(4, 'big') # Pointer to the next page (only used in leaf nodes).
+        header_bytes = (
+                self.page_type.to_bytes(1, 'big') +
+                self.num_keys.to_bytes(2, 'big') +
+                self.free_start.to_bytes(4, 'big') +
+                self.right_sibling.to_bytes(4, 'big')
                 )
+        logger.debug(f"Serialized PageHeader to bytes: {header_bytes}")
+        return header_bytes
         
     @staticmethod
     def from_bytes(data: bytes) -> 'PageHeader':
@@ -70,37 +77,45 @@ class PageHeader:
         This static method creates a PageHeader instance from a byte representation.
         """
         if len(data) < 11:
+            logger.error(f"Data must be at least 11 bytes long, got {len(data)} bytes")
             raise ValueError(f"Data must be at least 11 bytes long, got {len(data)} bytes")
-        return PageHeader(
+        header = PageHeader(
             page_type=data[0],
             num_keys=int.from_bytes(data[1:3], 'big'),
             free_start=int.from_bytes(data[3:7], 'big'),
             right_sibling=int.from_bytes(data[7:11], 'big')
             )
+        logger.debug(f"Deserialized PageHeader from bytes: {header.__dict__}")
+        return header
             
 class BTreePage:
     def __init__(self, is_leaf: bool):
         self.header = PageHeader(page_type=0x0D if is_leaf else 0x05)
-        self.cells: List[Tuple[int, Union[bytes, int]]] = []  # List of tuples (key, value) for leaf nodes or (key, child_page_number) for internal nodes or page_ptr
-        
+        self.cells: list = []  # List of tuples (key, value) for leaf nodes or (key, child_page_number) for internal nodes or page_ptr
+        logger.debug(f"Initialized BTreePage: is_leaf={is_leaf}")
+
     def add_leaf_cell(self, key: int, value: bytes):
         """
         Adds a cell to a leaf page.
         """
         if self.header.page_type != 0x0D:
+            logger.error("Cannot add leaf cell to non-leaf page")
             raise ValueError("Cannot add leaf cell to non-leaf page")
         self.cells.append((key, value))
         self.header.num_keys += 1
-        
+        logger.debug(f"Added leaf cell: key={key}, value={value}")
+
     def add_internal_cell(self, key: int, child_page_number: int):
         """
         Adds a cell to an internal page.
         """
         if self.header.page_type != 0x05:
+            logger.error("Cannot add internal cell to leaf page")
             raise ValueError("Cannot add internal cell to leaf page")
         self.cells.append((key, child_page_number))
         self.header.num_keys += 1
-        
+        logger.debug(f"Added internal cell: key={key}, child_page_number={child_page_number}")
+
     def to_bytes(self) -> bytes:
         content = b"".join(
             key.to_bytes(2, 'big') +
@@ -108,8 +123,10 @@ class BTreePage:
             value for key, value in self.cells
         )
         self.header.free_start = len(self.header.to_bytes()) + len(content)
-        return self.header.to_bytes() + content
-    
+        page_bytes = self.header.to_bytes() + content
+        logger.debug(f"Serialized BTreePage to bytes, length={len(page_bytes)}")
+        return page_bytes
+
     @staticmethod
     def from_bytes(data: bytes) -> 'BTreePage':
         header = PageHeader.from_bytes(data[:11])
@@ -121,30 +138,38 @@ class BTreePage:
             value_length = int.from_bytes(data[offset + 2:offset + 4], 'big')
             value = data[offset + 4:offset + 4 + value_length]
             page.cells.append((key, value))
+            logger.debug(f"Loaded cell: key={key}, value_length={value_length}, value={value}")
             offset += 4 + value_length
+        logger.info(f"Loaded page with {len(page.cells)} cells")
         return page
-    
+
 class Pager:
     def __init__(self, filename: str):
         self.filename = filename
         self.file = open(filename, 'r+b') if os.path.exists(filename) else open(filename, 'w+b')
+        logger.info(f"Opened file for Pager: {filename}")
         
     def read_page(self, page_number: int) -> bytes:
         self.file.seek((page_number -1) * PAGE_SIZE) # Seek to the start of the page
         data = self.file.read(PAGE_SIZE)
         if len(data) < PAGE_SIZE:
             data += b'\x00' * (PAGE_SIZE - len(data))  # Pad with zeros if necessary
+            logger.debug(f"Read page {page_number}: padded with zeros to {PAGE_SIZE} bytes")
+        else:
+            logger.debug(f"Read page {page_number}: {len(data)} bytes")
         return data
-    
+
     def write_page(self, page_number: int, data: bytes):
         if len(data) > PAGE_SIZE:
+            logger.error("Data exceeds page size")
             raise ValueError("Data exceeds page size")
         self.file.seek((page_number - 1) * PAGE_SIZE)
         self.file.write(data.ljust(PAGE_SIZE, b'\x00'))  # Pad with zeros if necessary
-        
+        self.file.flush()
+        logger.info(f"Wrote page {page_number}: {len(data)} bytes")
+
     def close(self):
         self.file.flush()
         self.file.close()
-
-
+        logger.info(f"Closed Pager file: {self.filename}")
 

@@ -10,20 +10,40 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 def generate(ast):
+    logger.debug(f"Received AST for code generation: {ast}")
     stmt_type = ast["type"].upper()
-    
+    logger.info(f"Generating code for statement type: {stmt_type}")
+
     if stmt_type == "CREATE":
-        return CreateCodeGenerator(ast).generate()
+        logger.debug("Dispatching to CreateCodeGenerator")
+        result = CreateCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for CREATE: {result}")
+        return result
     elif stmt_type == "SELECT":
-        return SelectCodeGenerator(ast).generate()
+        logger.debug("Dispatching to SelectCodeGenerator")
+        result = SelectCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for SELECT: {result}")
+        return result
     elif stmt_type == "INSERT":
-        return InsertCodeGenerator(ast).generate()
+        logger.debug("Dispatching to InsertCodeGenerator")
+        result = InsertCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for INSERT: {result}")
+        return result
     elif stmt_type == "UPDATE":
-        return UpdateCodeGenerator(ast).generate()
+        logger.debug("Dispatching to UpdateCodeGenerator")
+        result = UpdateCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for UPDATE: {result}")
+        return result
     elif stmt_type == "DELETE":
-        return DeleteCodeGenerator(ast).generate()
+        logger.debug("Dispatching to DeleteCodeGenerator")
+        result = DeleteCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for DELETE: {result}")
+        return result
     elif stmt_type == "DROP":
-        return DropCodeGenerator(ast).generate()
+        logger.debug("Dispatching to DropCodeGenerator")
+        result = DropCodeGenerator(ast).generate()
+        logger.debug(f"Generated code for DROP: {result}")
+        return result
     else:
         logger.error(f"Unsupported statement type: {stmt_type}")
         raise NotImplementedError(f"Code generation for {stmt_type} statements is not implemented yet.")

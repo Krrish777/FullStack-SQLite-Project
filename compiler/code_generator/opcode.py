@@ -29,6 +29,11 @@ class Opcode(Enum):
     JUMP_IF_FALSE = auto()
     LABEL = auto()
     
+    # Logical Operations
+    LOGICAL_AND = auto()
+    LOGICAL_OR = auto()
+    LOGICAL_NOT = auto()
+    
     # Comparison / Conditionals
     COMPARE_EQ = auto()
     COMPARE_NEQ = auto()

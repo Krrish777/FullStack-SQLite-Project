@@ -134,6 +134,11 @@ class BTree:
         logger.info("Printing BTree structure")
         _print(self.root)
 
+    def load_from_file(self, pager, root_page):
+        if root_page == 0:
+            raise ValueError("Invalid root page 0")
+        # ...existing code for loading from file...
+
 # ------------------ Test ------------------
 
 if __name__ == "__main__":

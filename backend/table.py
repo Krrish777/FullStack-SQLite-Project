@@ -1,5 +1,6 @@
 from backend.pager import Pager, BTreePage, PageHeader
 from utils.logger import get_logger
+import os
 
 logger = get_logger(__name__)
 
@@ -7,9 +8,12 @@ MAX_KEYS = 32  # Simulate a page size limit (adjust as needed)
 MIN_KEYS = MAX_KEYS // 2
 
 class Table:
-    def __init__(self, table_name: str, schema=None):
+    def __init__(self, table_name: str, schema=None, db_path=None):
         self.table_name = table_name
-        self.filename = f"{table_name}.tbl"
+        if db_path is None:
+            db_path = os.getcwd()
+        self.db_path = db_path
+        self.filename = os.path.join(self.db_path, f"{table_name}.tbl")
         self.schema = schema
         logger.info(f"Initializing Table for '{self.table_name}', file: {self.filename}")
         try:
@@ -21,6 +25,21 @@ class Table:
         # Always get root page number from Pager
         self.root_page_num = self.pager.read_root_page_number()
         logger.info(f"Root page number initialized to {self.root_page_num} for table '{self.table_name}'")
+        # --- FIX: Ensure root page is initialized and never 0 ---
+        if self.root_page_num == 0:
+            logger.error(f"Table '{self.table_name}' has invalid root page 0. Allocating new root page.")
+            self.root_page_num = self.pager.allocate_page()
+            assert self.root_page_num > 0, "Pager allocated page 0!"
+            self.pager.write_root_page_number(self.root_page_num)
+        try:
+            raw = self.pager.read_page(self.root_page_num)
+            if all(b == 0 for b in raw[:11]):
+                logger.info(f"Root page {self.root_page_num} is empty, initializing as empty leaf page.")
+                empty_page = BTreePage(is_leaf=True)
+                self.pager.write_page(self.root_page_num, empty_page.to_bytes())
+        except Exception as e:
+            logger.error(f"Error initializing root page for table '{self.table_name}': {e}")
+            raise
 
     def insert(self, key, value):
         split = self._insert_recursive(self.root_page_num, key, value)

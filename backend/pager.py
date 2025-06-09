@@ -323,6 +323,9 @@ class Pager:
             file_size = ROOT_PAGE_HEADER_SIZE
         num_pages = (file_size - ROOT_PAGE_HEADER_SIZE) // PAGE_SIZE
         new_page_number = num_pages + 1
+        if new_page_number == 0:
+            new_page_number = 1
+        assert new_page_number > 0, "Pager tried to allocate page 0!"
         logger.info(f"Allocating new page: {new_page_number}")
         return new_page_number
 

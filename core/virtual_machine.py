@@ -8,7 +8,7 @@ import os
 logger = get_logger(__name__)
 
 class VirtualMachine:
-    def __init__(self, code):
+    def __init__(self, code, db_path=None):
         self.code = code
         self.labels = {}
         self.instruction_pointer = 0
@@ -21,7 +21,8 @@ class VirtualMachine:
         self.registers = []
         self.output = []
         self.current_table = None
-        self.catalog = Catalog()  # <-- Initialize Catalog
+        self.db_path = db_path or os.getcwd()
+        self.catalog = Catalog(db_path=self.db_path)  # <-- Pass db_path
         
         self.table_schemas = {}  # table_name -> schema
 
@@ -102,7 +103,7 @@ class VirtualMachine:
             else:
                 raise RuntimeError(f"No schema found for table '{table_name}'")
         logger.info(f"OPEN_TABLE: Using schema for '{table_name}': {schema}")
-        tbl = Table(table_name)
+        tbl = Table(table_name, db_path=self.db_path)
         tbl.schema = schema
         self.current_table = tbl
         self.rows = []
@@ -274,25 +275,22 @@ class VirtualMachine:
         logger.info(f"CREATE_TABLE: Defined table '{table_name}' with columns: {columns}")
         self.table_schemas[table_name] =  columns
         # Allocate a new table file and root page
-        tbl = Table(table_name)
+        tbl = Table(table_name, db_path=self.db_path)
         tbl.close()
         self.catalog.create_table(table_name, columns, root_page = tbl.root_page_num)
         logger.info(f"CREATE_TABLE: Table '{table_name}' created with root page {tbl.root_page_num}")
 
     def op_drop_table(self, table_name):
         logger.info(f"DROP_TABLE: Dropping table '{table_name}'")
-        
-        tbl_filename = f"{table_name}.tbl"
+        tbl_filename = os.path.join(self.db_path, f"{table_name}.tbl")
         if os.path.exists(tbl_filename):
             os.remove(tbl_filename)
             logger.debug(f"DROP_TABLE: Removed file '{tbl_filename}'")
         else:
             logger.warning(f"DROP_TABLE: File '{tbl_filename}' does not exist, skipping removal.")
-            
         if table_name in self.table_schemas:
             del self.table_schemas[table_name]
             logger.debug(f"DROP_TABLE: Removed schema for '{table_name}' from memory")
-            
         self.catalog.drop_table(table_name)
         logger.debug(f"DROP_TABLE: Removed '{table_name}' from catalog")
         

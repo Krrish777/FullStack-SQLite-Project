@@ -34,16 +34,19 @@ class Catalog:
         tbl.close()
 
     def load(self):
-        tbl = Table(CATALOG_TABLE)
         self.table_schemas = {}
+        tbl = Table(CATALOG_TABLE)
         for _, value in tbl.scan_page(tbl.root_page_num):
-            row = decode_row(value)
-            self.table_schemas[row["table_name"]] = {
-                "root_page": row["root_page"],
-                "columns": json.loads(row["columns"]),
-            }
-        tbl.close()
-        logger.info(f"Loaded catalog: {self.table_schemas}")
+            if not value or value.strip() == b'':
+                continue
+            try:
+                row = decode_row(value)
+            except ValueError as e:
+                logger.error(f"Failed to decode row in catalog: {e}")
+                continue
+            self.table_schemas[row["table_name"]] = json.loads(row["columns"])
+            tbl.close()
+            logger.info(f"Loaded schema for table '{row['table_name']}' from catalog.")
 
     def create_table(self, table_name, columns, root_page):
         tbl = Table(CATALOG_TABLE)
@@ -61,6 +64,29 @@ class Catalog:
         tbl.close()
         self.load()
         logger.info(f"Added table '{table_name}' to catalog.")
+        
+    def drop_table(self, table_name):
+        tbl = Table(CATALOG_TABLE)
+        rows = []
+        for key, value in tbl.scan_page(tbl.root_page_num):
+            if not value or value.strip() == b'':
+                continue
+            try:
+                row = decode_row(value)
+            except ValueError as e:
+                logger.error(f"Failed to decode row in catalog: {e}")
+                continue
+            if row.get("table_name") != table_name:
+                rows.append((key, value))
+        # Clear the catalog table
+        root_page = tbl.load_root_page()
+        root_page.cells = []
+        tbl.save_root_page(root_page)
+        # Re-insert only the rows for tables not being dropped
+        for idx, (key, value) in enumerate(rows, 1):
+            tbl.insert(idx, value)
+        tbl.close()
+        self.load()
 
     def get_schema(self, table_name):
         return self.table_schemas.get(table_name, None)

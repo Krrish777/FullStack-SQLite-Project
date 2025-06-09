@@ -24,24 +24,33 @@ class SelectCodeGenerator(BaseCodeGenerator):
         ]
 
         if where:
-            code += [
-                (Opcode.LOAD_COLUMN, where["column"]),
-                (Opcode.LOAD_CONST, where["value"]),
-                (self._get_comparison_opcode(where["operator"]),),
-                (Opcode.JUMP_IF_FALSE, skip_label)
-            ]
-
+            if isinstance(where, list):
+                for idx, cond in enumerate(where):
+                    code.append((Opcode.LOAD_COLUMN, cond["column"]))
+                    code.append((Opcode.LOAD_CONST, cond["value"]))
+                    code.append((self._get_comparison_opcode(cond["operator"]),))
+                    if idx > 0:
+                        code.append((Opcode.LOGICAL_AND,))
+                code.append((Opcode.JUMP_IF_FALSE, skip_label))
+            else:
+                code += [
+                    (Opcode.LOAD_COLUMN, where["column"]),
+                    (Opcode.LOAD_CONST, where["value"]),
+                    (self._get_comparison_opcode(where["operator"]),),
+                    (Opcode.JUMP_IF_FALSE, skip_label)
+                ]
+        
         code.append((Opcode.EMIT_ROW, columns))
-
+        
         if where:
             code.append((Opcode.LABEL, skip_label))
-
+            
         code += [
             (Opcode.JUMP, loop_label),
             (Opcode.LABEL, end_label),
             (Opcode.SCAN_END,)
         ]
-        logger.debug(f"Generated SELECT code: {code}")
+        logger.debug(f"Generated code: {code}")
         return code
 
     def _get_comparison_opcode(self, operator):

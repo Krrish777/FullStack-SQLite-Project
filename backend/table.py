@@ -4,9 +4,10 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 class Table:
-    def __init__(self, table_name: str):
+    def __init__(self, table_name: str, schema=None):
         self.table_name = table_name
         self.filename = f"{table_name}.tbl"
+        self.schema = schema
         logger.info(f"Initializing Table for '{self.table_name}', file: {self.filename}")
         try:
             self.pager = Pager(self.filename)

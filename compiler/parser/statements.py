@@ -247,7 +247,7 @@ def parse_drop_statement(parser):
 
     parser.expect("KEYWORD", "DROP")
     parser.expect("KEYWORD", "TABLE")
-    table_name = parser.expect("IDENTIFIER")
+    table_name = parser.expect("IDENTIFIER")[1]  # FIX: get string, not tuple
     parser.expect("SEMICOLON")
 
     logger.info(f"Parsed DROP TABLE {table_name}")

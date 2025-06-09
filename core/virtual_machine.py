@@ -3,6 +3,7 @@ from backend.table import Table
 from utils.logger import get_logger
 from backend.row_codec import encode_row, decode_row
 from meta.catalog import Catalog
+import os
 
 logger = get_logger(__name__)
 
@@ -20,6 +21,8 @@ class VirtualMachine:
         self.output = []
         self.current_table = None
         self.catalog = Catalog()  # <-- Initialize Catalog
+        
+        self.table_schemas = {}  # table_name -> schema
 
         self._index_labels()
 
@@ -89,23 +92,28 @@ class VirtualMachine:
 
     def op_open_table(self, table_name):
         logger.debug(f"OPEN_TABLE: Opening table '{table_name}'")
-        if self.current_table:
-            self.current_table.close()
-        self.current_table = Table(table_name)
+        schema = self.table_schemas.get(table_name)
+        if schema is None:
+            schema_entry = self.catalog.get_schema(table_name)
+            if schema_entry:
+                if isinstance(schema_entry, dict) and "columns" in schema_entry:
+                    schema = schema_entry["columns"]
+                else:
+                    schema = schema_entry
+                self.table_schemas[table_name] = schema
+            else:
+                logger.error(f"OPEN_TABLE: Table '{table_name}' not found in catalog.")
+                raise RuntimeError(f"Table '{table_name}' not found in catalog.")
+        logger.info(f"OPEN_TABLE: Using schema for '{table_name}': {schema}")
+        tbl = Table(table_name)
+        tbl.schema = schema
+        self.current_table = tbl
         self.rows = []
-        self.row_metadata = {}
-        for key, value in self.current_table.scan_page(self.current_table.root_page_num):
-            try:
-                row = decode_row(value)
-            except Exception as e:
-                logger.warning(f"Skipping corrupt or empty row: {e}")
-                continue
+        for key, value in tbl.scan_page(tbl.root_page_num):
+            row = decode_row(value)
             row["rowid"] = key
             self.rows.append(row)
-            self.row_metadata[key] = (self.current_table.root_page_num, None)
-        logger.info(f"OPEN_TABLE: Loaded {len(self.rows)} rows from table '{table_name}'")
-        self.row_cursor = -1
-        logger.debug(f"Rows loaded: {self.rows}")
+        
 
     def op_scan_start(self):
         self.row_cursor = -1
@@ -192,7 +200,10 @@ class VirtualMachine:
         if not self.current_row:
             logger.debug("EMIT_ROW: No current row to emit.")
             return
-        result = {col: self.current_row.get(col) for col in columns}
+        if columns == ["*"]:
+            result = {k:v for k, v in self.current_row.items() if k != "rowid"}
+        else:
+            result = {col: self.current_row.get(col) for col in columns}
         self.output.append(result)
         logger.info(f"EMIT_ROW: {result}")
 
@@ -205,7 +216,10 @@ class VirtualMachine:
         schema_info = self.catalog.get_schema(table)
         if not schema_info:
             raise Exception(f"Table '{table}' does not exist in catalog.")
-        columns = [col[0] for col in schema_info["columns"]]
+        if isinstance(schema_info, dict) and "columns" in schema_info:
+            columns = [col[0] for col in schema_info["columns"]]
+        else:
+            columns = [col[0] for col in schema_info]
         logger.debug(f"Register stack: {self.registers} (expecting {len(columns)} values)")
         if len(self.registers) < len(columns):
             raise Exception(f"Not enough values on stack for insert into '{table}'")
@@ -260,16 +274,30 @@ class VirtualMachine:
         self.current_row = None
 
     def op_create_table(self, table_name, columns):
-        # columns: list of (name, type) tuples
         logger.info(f"CREATE_TABLE: Defined table '{table_name}' with columns: {columns}")
+        self.table_schemas[table_name] =  columns
         # Allocate a new table file and root page
         tbl = Table(table_name)
-        root_page = tbl.root_page_num
         tbl.close()
-        self.catalog.create_table(table_name, columns, root_page)
+        self.catalog.create_table(table_name, columns, root_page = tbl.root_page_num)
+        logger.info(f"CREATE_TABLE: Table '{table_name}' created with root page {tbl.root_page_num}")
 
     def op_drop_table(self, table_name):
-        logger.info(f"DROP_TABLE: Dropped table '{table_name}'")
+        logger.info(f"DROP_TABLE: Dropping table '{table_name}'")
+        
+        tbl_filename = f"{table_name}.tbl"
+        if os.path.exists(tbl_filename):
+            os.remove(tbl_filename)
+            logger.debug(f"DROP_TABLE: Removed file '{tbl_filename}'")
+        else:
+            logger.warning(f"DROP_TABLE: File '{tbl_filename}' does not exist, skipping removal.")
+            
+        if table_name in self.table_schemas:
+            del self.table_schemas[table_name]
+            logger.debug(f"DROP_TABLE: Removed schema for '{table_name}' from memory")
+            
+        self.catalog.drop_table(table_name)
+        logger.debug(f"DROP_TABLE: Removed '{table_name}' from catalog")
         
     def op_logical_and(self):
         left = self.registers.pop()

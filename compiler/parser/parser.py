@@ -136,34 +136,48 @@ class Parser:
 
     def parse_where_clause(self):
         """
-        Parses a WHERE clause: column [op] value, allowing multi-char operators.
-
-        Raises:
-            SyntaxError: On malformed WHERE.
+        Parses a WHERE clause: column [op] value [{AND|OR} column [op] value ...].
 
         Returns:
-            dict: {column, operator, value}
+            list: List of dicts, each representing a condition.
         """
         logger.debug("Parsing WHERE clause")
-        # column
-        tok = self.current_token()
-        if not tok or tok[0] != "IDENTIFIER":
-            raise SyntaxError("Expected column name in WHERE clause")
-        col = tok[1]; self.advance()
-        # operator (possibly two‐char)
-        op_tok = self.current_token()
-        if not op_tok or op_tok[0] != "OPERATOR":
-            raise SyntaxError("Expected operator in WHERE clause")
-        op = op_tok[1]
-        # check for >=, <=, !=, <>
-        nxt = self.peek()
-        if nxt and nxt[0] == "OPERATOR":
-            op += nxt[1]; self.advance()
-        self.advance()
-        # value
-        val_tok = self.current_token()
-        if not val_tok or val_tok[0] not in ("STRING","NUMBER"):
-            raise SyntaxError("Expected STRING or NUMBER in WHERE clause")
-        val = val_tok[1]; self.advance()
-        logger.debug(f"WHERE clause: {col} {op} {val}")
-        return {"column": col, "operator": op, "value": val}
+        conditions = []
+
+        while True:
+            # column
+            tok = self.current_token()
+            if not tok or tok[0] != "IDENTIFIER":
+                raise SyntaxError("Expected column name in WHERE clause")
+            col = tok[1]
+            self.advance()
+            # operator (possibly two‐char)
+            op_tok = self.current_token()
+            if not op_tok or op_tok[0] != "OPERATOR":
+                raise SyntaxError("Expected operator in WHERE clause")
+            op = op_tok[1]
+            nxt = self.peek()
+            if nxt and nxt[0] == "OPERATOR":
+                op += nxt[1]
+                self.advance()
+            self.advance()
+            # value
+            val_tok = self.current_token()
+            if not val_tok or val_tok[0] not in ("STRING", "NUMBER"):
+                raise SyntaxError("Expected STRING or NUMBER in WHERE clause")
+            val = val_tok[1]
+            self.advance()
+            conditions.append({"column": col, "operator": op, "value": val})
+
+            # Check for AND/OR
+            tok = self.current_token()
+            if tok and tok[0] == "KEYWORD" and tok[1] in ("AND", "OR"):
+                logic = tok[1]
+                self.advance()
+                # Optionally, store logic if you want to support OR as well
+                conditions[-1]["logic"] = logic
+                continue
+            break
+
+        logger.debug(f"WHERE clause: {conditions}")
+        return conditions

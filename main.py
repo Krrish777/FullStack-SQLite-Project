@@ -6,6 +6,7 @@ from compiler.tokenizer import Tokenizer
 from compiler.parser.statements import parse_statement
 from compiler.parser import Parser
 from compiler.code_generator import generate
+from core.virtual_machine import VirtualMachine
 
 from utils.errors import TokenizationError
 from utils.logger import get_logger
@@ -90,6 +91,19 @@ if __name__ == "__main__":
         for opcode, *args in codegen:
             args_str = ", ".join(map(str, args))
             print(f"{opcode.name}({args_str})")
+            
+        vm = VirtualMachine(codegen)
+        vm.run()
+        if vm.output:
+            print_colored("\nVM Output:", color=GREEN, bold=True)
+            for output in vm.output:
+                print(output)
+        elif parse_tree.get("type") == "INSERT":
+            print_colored("\nInsert operation completed successfully.", color=GREEN, bold=True)
+        elif parse_tree.get("type") == "CREATE":
+            print_colored("\nTable created successfully.", color=GREEN, bold=True)
+        elif parse_tree.get("type") == "DROP":
+            print_colored("\nTable dropped successfully.", color=GREEN, bold=True)
 
     except TokenizationError as e:
         logger.error(f"Tokenization error: {e}")

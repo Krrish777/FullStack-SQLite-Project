@@ -327,7 +327,8 @@ class Pager:
         return new_page_number
 
     def close(self):
-        self.file.flush()
-        os.fsync(self.file.fileno())
-        self.file.close()
-        logger.info(f"Closed Pager file: {self.filename}")
+        if self.file and not self.file.closed:
+            self.file.flush()
+            os.fsync(self.file.fileno())  # Ensure all data is written to disk
+            self.file.close()
+            logger.info(f"Closed file: {self.filename}")

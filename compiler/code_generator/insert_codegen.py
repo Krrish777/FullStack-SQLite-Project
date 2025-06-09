@@ -11,6 +11,7 @@ class InsertCodeGenerator(BaseCodeGenerator):
         values = self.ast["values"]
         
         code = []
+        code.append((Opcode.OPEN_TABLE, table))
         
         for value in values:
             code.append((Opcode.LOAD_CONST, value))

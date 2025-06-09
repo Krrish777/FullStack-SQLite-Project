@@ -262,10 +262,8 @@ class VirtualMachine:
         if self.current_row is None or self.row_cursor < 0:
             raise RuntimeError("No current row to delete.")
         rowid = self.current_row["rowid"]
-        page_num, _ = self.row_metadata[rowid]
-        page = self.current_table.load_page(page_num)
-        page.delete_leaf_cell(rowid)
-        self.current_table.save_page(page_num, page)
+        # Use new recursive delete for B-Tree
+        self.current_table.delete(rowid)
         del self.row_metadata[rowid]
         deleted_row = self.rows.pop(self.row_cursor)
         logger.info(f"DELETE_ROW: Deleted row {rowid}: {deleted_row}")

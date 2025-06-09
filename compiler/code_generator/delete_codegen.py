@@ -23,10 +23,13 @@ class DeleteCodeGenerator(BaseCodeGenerator):
         ]
 
         if where:
+            # If where is a list (from parse_where_clause), use the first condition
+            cond = where[0] if isinstance(where, list) else where
+            col = cond["column"]
             code += [
-                (Opcode.LOAD_COLUMN, where["column"]),
-                (Opcode.LOAD_CONST, where["value"]),
-                (self._get_comparison_opcode(where["operator"]),),
+                (Opcode.LOAD_COLUMN, col),
+                (Opcode.LOAD_CONST, cond["value"]),
+                (self._get_comparison_opcode(cond["operator"]),),
                 (Opcode.JUMP_IF_FALSE, skip_label)
             ]
 

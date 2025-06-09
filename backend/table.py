@@ -106,7 +106,7 @@ class Table:
         logger.info(f"SCAN_PAGE: page_number={page_number}, is_leaf={page.is_leaf}, num_cells={len(page.cells)}, children={getattr(page, 'children', None)}")
         if page.is_leaf:
             for key, value in page.cells:
-                yield (key, value)
+                yield (key, value, page_number)  # Yield page_number for each row
         else:
             n = len(page.cells)
             if not page.children or len(page.children) != n + 1:

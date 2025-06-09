@@ -16,6 +16,7 @@ class VirtualMachine:
         self.rows = []
         self.row_cursor = -1
         self.current_row = None
+        self.row_metadata = {}  # Maps rowid to (page_num, cell_num)
 
         self.registers = []
         self.output = []
@@ -96,23 +97,21 @@ class VirtualMachine:
         if schema is None:
             schema_entry = self.catalog.get_schema(table_name)
             if schema_entry:
-                if isinstance(schema_entry, dict) and "columns" in schema_entry:
-                    schema = schema_entry["columns"]
-                else:
-                    schema = schema_entry
+                schema = schema_entry
                 self.table_schemas[table_name] = schema
             else:
-                logger.error(f"OPEN_TABLE: Table '{table_name}' not found in catalog.")
-                raise RuntimeError(f"Table '{table_name}' not found in catalog.")
+                raise RuntimeError(f"No schema found for table '{table_name}'")
         logger.info(f"OPEN_TABLE: Using schema for '{table_name}': {schema}")
         tbl = Table(table_name)
         tbl.schema = schema
         self.current_table = tbl
         self.rows = []
-        for key, value in tbl.scan_page(tbl.root_page_num):
+        self.row_metadata = {}
+        for key, value, page_num in tbl.scan_page(tbl.root_page_num):
             row = decode_row(value)
             row["rowid"] = key
             self.rows.append(row)
+            self.row_metadata[key] = (page_num, None)  # Track correct page_num
         
 
     def op_scan_start(self):

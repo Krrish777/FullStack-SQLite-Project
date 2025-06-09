@@ -36,7 +36,7 @@ class Catalog:
     def load(self):
         self.table_schemas = {}
         tbl = Table(CATALOG_TABLE)
-        for _, value in tbl.scan_page(tbl.root_page_num):
+        for _, value, *_ in tbl.scan_page(tbl.root_page_num):
             if not value or value.strip() == b'':
                 continue
             try:
@@ -45,14 +45,14 @@ class Catalog:
                 logger.error(f"Failed to decode row in catalog: {e}")
                 continue
             self.table_schemas[row["table_name"]] = json.loads(row["columns"])
-            tbl.close()
-            logger.info(f"Loaded schema for table '{row['table_name']}' from catalog.")
+        tbl.close()
+        logger.info(f"Loaded schema for all tables from catalog.")
 
     def create_table(self, table_name, columns, root_page):
         tbl = Table(CATALOG_TABLE)
         # Find next available key
         max_id = 0
-        for key, _ in tbl.scan_page(tbl.root_page_num):
+        for key, *_ in tbl.scan_page(tbl.root_page_num):
             max_id = max(max_id, key)
         row = {
             "table_name": table_name,
@@ -68,7 +68,7 @@ class Catalog:
     def drop_table(self, table_name):
         tbl = Table(CATALOG_TABLE)
         rows = []
-        for key, value in tbl.scan_page(tbl.root_page_num):
+        for key, value, *_ in tbl.scan_page(tbl.root_page_num):
             if not value or value.strip() == b'':
                 continue
             try:

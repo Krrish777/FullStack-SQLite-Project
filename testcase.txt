@@ -1,0 +1,39 @@
+
+.create-db mydb
+.create-db testdb
+.create-db anotherdb
+.list-dbs
+.use-db mydb
+.show-tables
+CREATE TABLE users (name TEXT, age INT);
+
+
+INSERT INTO users VALUES ('Alice', 30);
+INSERT INTO users VALUES ('Bob', 25);
+INSERT INTO users VALUES ('Charlie', 35);
+
+
+SELECT * FROM users;
+SELECT * FROM users WHERE age > 30;
+UPDATE users SET age = 28 WHERE name = 'Bob';
+SELECT * FROM users WHERE name = 'Bob';
+DELETE FROM users WHERE name = 'Charlie';
+SELECT * FROM users;
+CREATE TABLE posts (title TEXT, content TEXT);
+INSERT INTO posts VALUES ('Hello', 'First post!');
+INSERT INTO posts VALUES ('Update', 'Some update...');
+SELECT * FROM posts;
+.show-tables
+.use-db testdb
+.show-tables
+CREATE TABLE logs (event TEXT, timestamp TEXT);
+INSERT INTO logs VALUES ('start', '2025-06-08 10:00');
+SELECT * FROM logs;
+.use-db mydb
+SELECT * FROM users;
+DROP TABLE posts;
+.show-tables
+.use-db anotherdb
+CREATE TABLE temp (x INT);
+DROP TABLE temp;
+.exit

@@ -1,7 +1,7 @@
 import json
 import os
-from backend.table import Table
-from backend.row_codec import encode_row, decode_row
+from storage_engine.table import Table
+from storage_engine.row_codec import encode_row, decode_row
 from utils.logger import get_logger
 
 logger = get_logger(__name__)

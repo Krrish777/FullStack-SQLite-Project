@@ -1,7 +1,7 @@
 from compiler.code_generator.opcode import Opcode
-from backend.table import Table
+from storage_engine.table import Table
 from utils.logger import get_logger
-from backend.row_codec import encode_row, decode_row
+from storage_engine.row_codec import encode_row, decode_row
 from meta.catalog import Catalog
 import os
 

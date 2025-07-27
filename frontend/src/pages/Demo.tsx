@@ -1,11 +1,103 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Database, Zap, Settings } from "lucide-react";
+import { ArrowLeft, Database, Zap, Settings, Wifi, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TerminalAutoComplete from "@/components/TerminalAutoComplete";
 import { highlightSQLCommand, getSQLSuggestions } from "@/utils/sqlSyntaxHighlighter";
 import TutorialMode, { TutorialButton } from "@/components/TutorialMode";
 import ThemeSwitcher, { themes, TerminalTheme } from "@/components/ThemeSwitcher";
+
+// API Types and Service
+const API_BASE_URL = 'http://localhost:8000';
+
+interface SQLRequest {
+  query: string;
+  database?: string;
+}
+
+interface SQLResponse {
+  success: boolean;
+  query: string;
+  database: string;
+  execution_time_ms: number;
+  tokens?: Array<{ type: string; value: string }>;
+  parse_tree?: any;
+  opcodes?: string[];
+  result?: any[];
+  message?: string;
+  error?: string;
+}
+
+interface DatabaseInfo {
+  name: string;
+  tables: string[];
+}
+
+class APIService {
+  private baseURL: string;
+
+  constructor(baseURL: string = API_BASE_URL) {
+    this.baseURL = baseURL;
+  }
+
+  private async fetchAPI<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+    const url = `${this.baseURL}${endpoint}`;
+    
+    const defaultOptions: RequestInit = {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      ...options,
+    };
+
+    const response = await fetch(url, defaultOptions);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return await response.json();
+  }
+
+  async executeQuery(request: SQLRequest): Promise<SQLResponse> {
+    return this.fetchAPI<SQLResponse>('/demo/query', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+  }
+
+  async getDatabases(): Promise<{ databases: DatabaseInfo[] }> {
+    return this.fetchAPI<{ databases: DatabaseInfo[] }>('/demo/databases');
+  }
+
+  async getTables(databaseName: string): Promise<{ database: string; tables: string[] }> {
+    return this.fetchAPI<{ database: string; tables: string[] }>(`/demo/databases/${databaseName}/tables`);
+  }
+
+  async createDatabase(databaseName: string): Promise<{ success: boolean; message: string }> {
+    return this.fetchAPI<{ success: boolean; message: string }>('/demo/databases', {
+      method: 'POST',
+      body: JSON.stringify({ name: databaseName }),
+    });
+  }
+
+  async deleteDatabase(databaseName: string): Promise<{ success: boolean; message: string }> {
+    return this.fetchAPI<{ success: boolean; message: string }>(`/demo/databases/${databaseName}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async healthCheck(): Promise<{ status: string; timestamp: number }> {
+    return this.fetchAPI<{ status: string; timestamp: number }>('/health');
+  }
+
+  async getAPIInfo(): Promise<{ message: string; version: string; author: string; docs: string }> {
+    return this.fetchAPI<{ message: string; version: string; author: string; docs: string }>('/');
+  }
+}
+
+const apiService = new APIService();
 
 interface TerminalLine {
   type: 'command' | 'output' | 'error' | 'system' | 'performance';
@@ -35,11 +127,15 @@ const Demo = () => {
   const [isTutorialActive, setIsTutorialActive] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<TerminalTheme>(themes[0]);
   const [showThemeSettings, setShowThemeSettings] = useState(false);
+  const [currentDatabase, setCurrentDatabase] = useState('main');
+  const [databases, setDatabases] = useState<DatabaseInfo[]>([]);
+  const [apiStatus, setApiStatus] = useState<'connected' | 'disconnected' | 'checking'>('checking');
+  const [isOnlineMode, setIsOnlineMode] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
-  // Mock database
-  const [tables, setTables] = useState<Table[]>([
+  // Mock database for offline mode
+  const [mockTables, setMockTables] = useState<Table[]>([
     {
       name: 'users',
       columns: [
@@ -114,6 +210,34 @@ const Demo = () => {
     });
   }, []);
 
+  // Check API status
+  const checkAPIStatus = async () => {
+    try {
+      setApiStatus('checking');
+      await apiService.healthCheck();
+      setApiStatus('connected');
+      setIsOnlineMode(true);
+      await loadDatabases();
+    } catch (error) {
+      setApiStatus('disconnected');
+      setIsOnlineMode(false);
+    }
+  };
+
+  // Load databases from API
+  const loadDatabases = async () => {
+    if (!isOnlineMode) return;
+    
+    try {
+      const response = await apiService.getDatabases();
+      setDatabases(response.databases);
+    } catch (error) {
+      console.error('Failed to load databases:', error);
+      setIsOnlineMode(false);
+      setApiStatus('disconnected');
+    }
+  };
+
   const welcomeMessage = () => {
     addLine("", 'system');
     addLine("╔══════════════════════════════════════════════════════════════╗", 'system');
@@ -124,19 +248,33 @@ const Demo = () => {
     addLine("", 'system');
     addLine("🚀 Features: Syntax Highlighting • Auto-completion • Multi-line Support", 'system');
     addLine("", 'system');
+    if (isOnlineMode) {
+      addLine("🌐 Connected to FastAPI Backend - Real database operations enabled", 'system');
+    } else {
+      addLine("📱 Offline Mode - Using mock data for demonstration", 'system');
+    }
+    addLine("", 'system');
     addLine("Quick Start Commands:", 'system');
     addLine("  • help                    - Show all available commands", 'system');
     addLine("  • show tables            - List database tables", 'system');
     addLine("  • select * from users    - Query user data", 'system');
     addLine("  • describe users         - Show table schema", 'system');
+    if (isOnlineMode) {
+      addLine("  • create table...        - Create new table", 'system');
+      addLine("  • insert into...         - Insert new records", 'system');
+    }
     addLine("", 'system');
     addLine("💡 Tips: Use Tab for auto-completion, Ctrl+Enter for multi-line", 'system');
     addLine("", 'system');
   };
 
   useEffect(() => {
-    welcomeMessage();
+    checkAPIStatus();
   }, []);
+
+  useEffect(() => {
+    welcomeMessage();
+  }, [isOnlineMode]);
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -144,46 +282,100 @@ const Demo = () => {
     }
   }, [lines]);
 
-  const executeCommand = async (command: string) => {
-    const trimmedCommand = command.trim().toLowerCase();
+  // Execute command online (with API)
+  const executeCommandOnline = async (command: string) => {
     const startTime = performance.now();
     
-    // Add command with syntax highlighting
-    setLines(prev => [...prev, { 
-      content: `sqlite-engine@demo:~$ ${command}`, 
-      type: 'command', 
-      timestamp: new Date() 
-    }]);
-    
-    setIsProcessing(true);
+    try {
+      const response: SQLResponse = await apiService.executeQuery({
+        query: command,
+        database: currentDatabase
+      });
 
+      const executionTime = performance.now() - startTime;
+
+      if (response.success) {
+        // Handle different types of responses
+        if (response.result && response.result.length > 0) {
+          // Format query results as table
+          const rows = response.result;
+          if (rows.length > 0 && typeof rows[0] === 'object') {
+            const headers = Object.keys(rows[0]);
+            const colWidths = headers.map(header => 
+              Math.max(header.length, 
+                Math.max(...rows.map(row => String(row[header] || '').length)), 
+                12)
+            );
+            
+            // Create table
+            const topBorder = "┌─" + colWidths.map(w => "─".repeat(w)).join("─┬─") + "─┐";
+            const separator = "├─" + colWidths.map(w => "─".repeat(w)).join("─┼─") + "─┤";
+            const bottomBorder = "└─" + colWidths.map(w => "─".repeat(w)).join("─┴─") + "─┘";
+            const headerRow = "│ " + headers.map((h, i) => h.padEnd(colWidths[i])).join(" │ ") + " │";
+            
+            addLine(topBorder, 'output');
+            addLine(headerRow, 'output');
+            addLine(separator, 'output');
+            
+            rows.forEach(row => {
+              const rowData = headers.map((header, i) => 
+                String(row[header] || '').padEnd(colWidths[i])
+              );
+              addLine("│ " + rowData.join(" │ ") + " │", 'output');
+            });
+            
+            addLine(bottomBorder, 'output');
+            addLine("", 'output');
+            addLine(`✅ Query completed successfully`, 'performance');
+            addLine(`📊 ${rows.length} rows returned • ⚡ ${response.execution_time_ms.toFixed(2)}ms execution time`, 'performance');
+          } else {
+            addLine(JSON.stringify(rows, null, 2), 'output');
+          }
+        } else if (response.message) {
+          addLine(response.message, 'output');
+          addLine(`✅ Operation completed successfully • ⚡ ${response.execution_time_ms.toFixed(2)}ms`, 'performance');
+        } else {
+          addLine('Query executed successfully.', 'output');
+          addLine(`⚡ ${response.execution_time_ms.toFixed(2)}ms execution time`, 'performance');
+        }
+
+        // Reload databases if structure might have changed
+        if (command.toLowerCase().includes('create') || 
+            command.toLowerCase().includes('drop')) {
+          await loadDatabases();
+        }
+      } else {
+        addLine(`❌ Error: ${response.error || 'Unknown error occurred'}`, 'error');
+      }
+    } catch (error) {
+      addLine(`🔌 Connection Error: ${error instanceof Error ? error.message : 'Failed to connect to database server'}`, 'error');
+      addLine(`Switching to offline mode...`, 'system');
+      setIsOnlineMode(false);
+      setApiStatus('disconnected');
+    }
+  };
+
+  // Execute command offline (mock data)
+  const executeCommandOffline = async (command: string) => {
+    const trimmedCommand = command.toLowerCase();
+    const startTime = performance.now();
+    
     // Realistic processing simulation
-    const processingTime = Math.random() * 400 + 150;
+    const processingTime = Math.random() * 200 + 100;
     await new Promise(resolve => setTimeout(resolve, processingTime));
     
     const executionTime = performance.now() - startTime;
 
-    if (trimmedCommand === 'help') {
-      addLine("Available Commands:", 'output');
-      addLine("  help                     - Show this help message", 'output');
-      addLine("  show tables             - List all tables", 'output');
-      addLine("  describe <table>        - Show table schema", 'output');
-      addLine("  select * from <table>   - Show table data", 'output');
-      addLine("  insert into <table>...  - Insert new record", 'output');
-      addLine("  update <table>...       - Update records", 'output');
-      addLine("  delete from <table>...  - Delete records", 'output');
-      addLine("  clear                   - Clear screen", 'output');
-      addLine("  exit                    - Return to home page", 'output');
-    } else if (trimmedCommand === 'show tables') {
+    if (trimmedCommand.startsWith('show tables')) {
       addLine("Tables in database:", 'output');
-      tables.forEach(table => {
+      mockTables.forEach(table => {
         addLine(`  ${table.name}`, 'output');
       });
       addLine("", 'output');
-      addLine(`📋 Found ${tables.length} tables • ⚡ ${executionTime.toFixed(2)}ms`, 'performance');
+      addLine(`📋 Found ${mockTables.length} tables • ⚡ ${executionTime.toFixed(2)}ms`, 'performance');
     } else if (trimmedCommand.startsWith('describe ')) {
       const tableName = trimmedCommand.split(' ')[1];
-      const table = tables.find(t => t.name === tableName);
+      const table = mockTables.find(t => t.name === tableName);
       if (table) {
         addLine(`Schema for table '${table.name}':`, 'output');
         addLine("┌─────────────────┬─────────────────┐", 'output');
@@ -196,11 +388,11 @@ const Demo = () => {
         addLine("", 'output');
         addLine(`📝 Schema displayed • ⚡ ${executionTime.toFixed(2)}ms`, 'performance');
       } else {
-        addLine(`Error: Table '${tableName}' not found`, 'error');
+        addLine(`❌ Error: Table '${tableName}' not found`, 'error');
       }
     } else if (trimmedCommand.startsWith('select * from ')) {
       const tableName = trimmedCommand.split(' ')[3];
-      const table = tables.find(t => t.name === tableName);
+      const table = mockTables.find(t => t.name === tableName);
       if (table && table.data.length > 0) {
         const headers = table.columns.map(col => col.name);
         const colWidths = headers.map(header => Math.max(header.length, 12));
@@ -230,12 +422,55 @@ const Demo = () => {
       } else if (table) {
         addLine(`Table '${tableName}' is empty`, 'output');
       } else {
-        addLine(`Error: Table '${tableName}' not found`, 'error');
+        addLine(`❌ Error: Table '${tableName}' not found`, 'error');
       }
-    } else if (trimmedCommand === 'clear') {
+    } else {
+      addLine(`📱 Offline Mode: Limited SQL support. Try 'show tables', 'describe users', or 'select * from users'`, 'error');
+    }
+  };
+
+  const executeCommand = async (command: string) => {
+    const trimmedCommand = command.trim();
+    const startTime = performance.now();
+    
+    // Add command with syntax highlighting
+    setLines(prev => [...prev, { 
+      content: `sqlite-engine@${currentDatabase}:~$ ${command}`, 
+      type: 'command', 
+      timestamp: new Date() 
+    }]);
+    
+    setIsProcessing(true);
+
+    // Handle special commands first
+    if (trimmedCommand.toLowerCase() === 'help') {
+      addLine("Available Commands:", 'output');
+      addLine("  help                     - Show this help message", 'output');
+      addLine("  show tables             - List all tables", 'output');
+      addLine("  describe <table>        - Show table schema", 'output');
+      addLine("  select * from <table>   - Show table data", 'output');
+      if (isOnlineMode) {
+        addLine("  create table...         - Create new table", 'output');
+        addLine("  insert into...          - Insert new record", 'output');
+        addLine("  update <table>...       - Update records", 'output');
+        addLine("  delete from <table>...  - Delete records", 'output');
+        addLine("  drop table <table>      - Drop table", 'output');
+      }
+      addLine("  clear                   - Clear screen", 'output');
+      addLine("  reconnect               - Try to reconnect to API", 'output');
+      addLine("  exit                    - Return to home page", 'output');
+    } else if (trimmedCommand.toLowerCase() === 'clear') {
       setLines([]);
       welcomeMessage();
-    } else if (trimmedCommand === 'exit') {
+    } else if (trimmedCommand.toLowerCase() === 'reconnect') {
+      addLine("🔄 Attempting to reconnect to API...", 'system');
+      await checkAPIStatus();
+      if (apiStatus === 'connected') {
+        addLine("✅ Successfully reconnected to API!", 'system');
+      } else {
+        addLine("❌ Failed to reconnect. Staying in offline mode.", 'error');
+      }
+    } else if (trimmedCommand.toLowerCase() === 'exit') {
       addLine("Goodbye! Returning to home page...", 'system');
       setTimeout(() => {
         window.location.href = '/';
@@ -243,8 +478,12 @@ const Demo = () => {
     } else if (trimmedCommand === '') {
       // Empty command, do nothing
     } else {
-      addLine(`Error: Unknown command '${command}'`, 'error');
-      addLine("Type 'help' for available commands", 'system');
+      // Execute SQL command
+      if (isOnlineMode && apiStatus === 'connected') {
+        await executeCommandOnline(trimmedCommand);
+      } else {
+        await executeCommandOffline(trimmedCommand);
+      }
     }
 
     setIsProcessing(false);
@@ -354,8 +593,28 @@ const Demo = () => {
           <div className="flex items-center gap-3">
             <Database className="h-6 w-6 text-primary" />
             <span className="text-lg font-semibold">SQLite Engine Demo</span>
+            {/* API Status Indicator */}
+            <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs ${
+              apiStatus === 'connected' ? 'bg-green-500/20 text-green-400' :
+              apiStatus === 'disconnected' ? 'bg-red-500/20 text-red-400' :
+              'bg-yellow-500/20 text-yellow-400'
+            }`}>
+              {apiStatus === 'connected' ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
+              {apiStatus === 'connected' ? 'Online' : apiStatus === 'disconnected' ? 'Offline' : 'Checking...'}
+            </div>
           </div>
           <div className="flex items-center gap-2">
+            {isOnlineMode && databases.length > 0 && (
+              <select
+                value={currentDatabase}
+                onChange={(e) => setCurrentDatabase(e.target.value)}
+                className="bg-background border border-white/20 rounded px-2 py-1 text-sm"
+              >
+                {databases.map(db => (
+                  <option key={db.name} value={db.name}>{db.name} ({db.tables.length} tables)</option>
+                ))}
+              </select>
+            )}
             <Button 
               variant="outline" 
               size="sm"
@@ -401,12 +660,14 @@ const Demo = () => {
                 <div className="w-3 h-3 rounded-full bg-warning-amber" />
                 <div className="w-3 h-3 rounded-full bg-success-green" />
               </div>
-              <span className="ml-4 text-sm text-muted-foreground">SQLite Terminal</span>
+              <span className="ml-4 text-sm text-muted-foreground">
+                SQLite Terminal - {isOnlineMode ? `Database: ${currentDatabase}` : 'Offline Mode'}
+              </span>
             </div>
 
             {/* Terminal Content */}
             <div className="h-[calc(100%-60px)] flex flex-col">
-            <div 
+              <div 
                 ref={terminalRef}
                 className="flex-1 p-4 overflow-y-auto terminal-phosphor text-sm leading-relaxed space-y-1 relative z-10"
                 style={{ color: currentTheme.foreground }}
@@ -425,8 +686,8 @@ const Demo = () => {
                     {line.type === 'command' ? (
                       <div dangerouslySetInnerHTML={{ 
                         __html: line.content.replace(
-                          /sqlite-engine@demo:~\$ (.+)/, 
-                          'sqlite-engine@demo:~$ ' + highlightSQLCommand('$1')
+                          /sqlite-engine@(.+):~\$ (.+)/, 
+                          'sqlite-engine@$1:~$ ' + highlightSQLCommand('$2')
                         )
                       }} />
                     ) : (
@@ -455,7 +716,7 @@ const Demo = () => {
                     className="terminal-glow"
                     style={{ color: currentTheme.prompt }}
                   >
-                    sqlite-engine@demo:~{isMultiLine ? ' ...' : '$'}
+                    sqlite-engine@{currentDatabase}:~{isMultiLine ? ' ...' : ''}
                   </span>
                   <div className="flex-1 relative">
                     <input
@@ -492,6 +753,50 @@ const Demo = () => {
                   </div>
                 )}
               </form>
+            </div>
+          </div>
+
+          {/* Quick Commands */}
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-6 gap-2">
+            <button
+              onClick={() => setInput('SELECT 1;')}
+              className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+            >
+              Test Query
+            </button>
+            <button
+              onClick={() => setInput('show tables')}
+              className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+            >
+              Show Tables
+            </button>
+            {isOnlineMode && (
+              <button
+                onClick={() => setInput('CREATE TABLE users (id INTEGER, name TEXT);')}
+                className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+              >
+                Create Table
+              </button>
+            )}
+            <button
+              onClick={() => setInput('describe users')}
+              className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+            >
+              Describe
+            </button>
+            <button
+              onClick={() => setInput('clear')}
+              className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+            >
+              Clear
+            </button>
+            <button
+              onClick={() => setInput('help')}
+              className="bg-gray-800/50 hover:bg-gray-700/50 text-white py-2 px-3 rounded text-sm transition-colors border border-white/10"
+            >
+              Help
+            </button>
+          </div>
         </div>
       </div>
 
@@ -501,8 +806,6 @@ const Demo = () => {
         onClose={() => setIsTutorialActive(false)} 
       />
       <TutorialButton onStart={() => setIsTutorialActive(true)} />
-    </div>
-      </div>
     </div>
   );
 };

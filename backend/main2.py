@@ -26,15 +26,12 @@ app = FastAPI(
     version="0.1.0"
 )
 
-origins = [
-    "http://localhost:8000",
-]
-# CORS setup
+# Update your CORS configuration in your FastAPI file
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173", "http://127.0.0.1:5173"],  # Add Vite default ports
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -66,6 +63,9 @@ class DatabaseInfo(BaseModel):
 class TableInfo(BaseModel):
     name: str
     exists: bool
+    
+class DatabaseCreateRequest(BaseModel):
+    name: str
 
 # Utility functions (converted from your existing code)
 def get_db_path(db_name):
@@ -263,10 +263,10 @@ async def list_tables(database_name: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/demo/databases")
-async def create_database(database_name: str):
+async def create_database(request: DatabaseCreateRequest):
     """Create a new database"""
     try:
-        success, message = create_database_internal(database_name)
+        success, message = create_database_internal(request.name)
         if success:
             return {"success": True, "message": message}
         else:

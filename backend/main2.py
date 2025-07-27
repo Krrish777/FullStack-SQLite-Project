@@ -114,7 +114,7 @@ def process_sql_internal(sql: str, db_name: str):
     try:
         # Tokenization
         tokens = tokenizer.tokenize(sql)
-        token_list = [{"type": token_type, "value": token_value} for token_type, token_value in tokens]
+        token_list = [{"type": str(token_type), "value": str(token_value)} for token_type, token_value in tokens]
         
         # Parsing
         parser = Parser(tokens)
@@ -310,7 +310,6 @@ if __name__ == "__main__":
     print("🚀 Starting SQLite Clone API Server...")
     print("📖 API Docs: http://localhost:8000/docs")
     print("🔗 Demo Endpoints: http://localhost:8000/demo/")
-    print("🎯 Frontend: https://sqlite-likedatabase-engine.lovable.app/")
     
     uvicorn.run(
         app,
